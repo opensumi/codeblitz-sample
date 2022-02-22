@@ -7,7 +7,8 @@
 # IDE 示例
 npm run start
 
-# 查看 sql-editor 示例
+# 查看 sql-editor 示例 需先模拟下载sql本地插件
+npx alex ext link ./extensions/worker-sql
 npm run startSql
 
 # 查看 filesystem 示例
