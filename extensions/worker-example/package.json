@@ -1,0 +1,27 @@
+{
+  "name": "worker-example",
+  "version": "0.0.2",
+  "publisher": "alex-demo",
+  "engines": {
+    "kaitian": "*"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "enableKaitianWebAssets": true,
+  "kaitianContributes": {
+    "workerMain": "./worker.js",
+    "browserMain": "./browser.js",
+    "browserViews": {
+      "left": {
+        "type": "add",
+        "view": [
+          {
+            "id": "Component",
+            "icon": "extension"
+          }
+        ]
+      }
+    }
+  }
+}
