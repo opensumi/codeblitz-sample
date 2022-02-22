@@ -6,9 +6,11 @@ import '@alipay/alex/bundle/alex.css';
 // 按需引入
 import '@alipay/alex/languages/sql';
 
-/* //本地插件模拟
+/* //使用本地插件模拟
 import { useLoadLocalExtensionMetadata } from './utils/localExtension' 
  */
+import wrokerSql from '@alipay/alex/extensions/alex-demo.worker-sql'
+
 
 
 // 布局配置，可根据需要增删模块
@@ -37,7 +39,7 @@ const unregisterKeybindings = [
 ];
 
 const Editor = () => {
-/* // 本地插件模拟  
+/* // 使用本地插件模拟  
   const extensionMetadata = useLoadLocalExtensionMetadata();
   if(!extensionMetadata) return null; 
 */
@@ -58,8 +60,11 @@ const Editor = () => {
           'general.theme': 'ide-light',
           'general.language': 'zh_CN',
         },
-        // 插件配置
-        // extensionMetadata,
+        /* //使用本地插件模拟
+          extensionMetadata, 
+        */
+       // 插件配置
+        extensionMetadata: [wrokerSql]
       }}
       runtimeConfig={{
         biz: 'alex-sql',
