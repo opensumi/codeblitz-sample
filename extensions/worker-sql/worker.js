@@ -154,7 +154,7 @@ exports.activate = async (context) => {
 
   // sql语言服务
   const keyProvider = languages.registerCompletionItemProvider(
-    {language: '*'},
+    {language: 'sql'},
     {
       provideCompletionItems(document, position, token, context) {
         console.log('provideCompletionItems',document,position,token,context)
