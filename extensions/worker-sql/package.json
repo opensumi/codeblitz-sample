@@ -1,0 +1,15 @@
+{
+  "name": "worker-sql",
+  "version": "0.0.1",
+  "publisher": "alex-demo",
+  "engines": {
+    "kaitian": "*"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "enableKaitianWebAssets": true,
+  "kaitianContributes": {
+    "workerMain": "./worker.js"
+  }
+}
