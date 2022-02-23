@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { getLocalExtensions, getLocalExtensionsMetadata} = require('./utils/scan-extension.js');
 
 if (process.env.INTEGRATION === 'editor' && !process.env.PRIVATE_TOKEN) {
   console.error('请配置 code token 的环境变量 PRIVATE_TOKEN\n获取地址 https://code.alipay.com/profile/private_tokens\n')
