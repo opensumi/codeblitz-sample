@@ -3,6 +3,8 @@
 ## [Alex对接文档](https://yuque.antfin.com/cloud-ide/alex/ad0sp7)
 
 ## Usage
+
+## Alex [开发文档](https://yuque.antfin-inc.com/cloud-ide/alex/ad0sp7)
 ```bash
 # IDE 示例
 npm run start

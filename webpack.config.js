@@ -64,23 +64,6 @@ module.exports = (env) => ({
     },
     contentBasePublicPath: '/assets/~',
     contentBase: '/',
-    async before(app){
-      // app.get('/getLocalExtensions', (req, res, next) => {
-      //   getLocalExtensions().then(res.send.bind(res)).catch(next);
-      // });
-      // 本地插件模拟 将开发的插件放入 ./extensions 文件夹
-      // 或
-      // 通过 npx alex ext link <pwd>  pwd=./extensions/worker-sql  使用本地插件开发  https://yuque.antfin.com/cloud-ide/alex/xx5pq7#heuME
-      app.get('/getLocalExtensionsMetadata', function(req, res, next) {
-        getLocalExtensionsMetadata(`http://localhost:${8001}`, '/assets/~')
-        .then(res.send.bind(res))
-        .catch(next);
-      });
-      app.use('/assets/~', function(req, res, next){
-        req.set('Access-Control-Allow-Origin', '*');
-        res.sendFile(req.path)
-      })
-    },
     proxy: {
       '/code-service': {
         target: process.env.CODE_SERVICE_HOST || 'https://code.alipay.com',
