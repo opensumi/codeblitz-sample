@@ -9,8 +9,11 @@
 # IDE 示例
 npm run start
 
-# 查看 sql-editor 示例 需先模拟下载sql本地插件
-npx alex ext link ./extensions/worker-sql
+# 查看 sql-editor 示例 
+cd extensions/wroker-sql
+kaitian watch  #需先下载kaitian  tnpm i kaitian -g
+
+npx alex ext link ./extensions/worker-sql #模拟下载sql本地插件
 npm run startSql
 
 # 查看 filesystem 示例
