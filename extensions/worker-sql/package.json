@@ -3,13 +3,43 @@
   "version": "0.0.1",
   "publisher": "alex-demo",
   "engines": {
-    "kaitian": "*"
+    "vscode": "^1.36.0",
+    "kaitian": "^1.8.30"
   },
   "activationEvents": [
     "*"
   ],
   "enableKaitianWebAssets": true,
   "kaitianContributes": {
-    "workerMain": "./worker.js"
+    "workerMain": "./out/worker/index.js"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run compile",
+    "compile": "kaitian compile",
+    "dev": "kaitian watch --onSuccess \"npm run post:file-change\"",
+    "post:file-change": "curl 127.0.0.1:10012/FILE_CHANGE",
+    "start:live-reload-server": "cloudide-extension-live-preview",
+    "test": "jest",
+    "antlr4ts": "antlr4ts ./test.g4 -o ./src/extend/antlr"
+  },
+  "devDependencies": {
+    "@ali/kaitian": "latest",
+    "@ali/kaitian-cli": "^1.6.4",
+    "@alipay/cloudide-extension-live-preview": "^1.0.0",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.6.4",
+    "@types/react": "^16.9.9",
+    "antlr4ts-cli": "^0.5.0-alpha.4",
+    "events": "^3.2.0",
+    "jest": "^26.4.4",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "ts-jest": "^26.4.4",
+    "tslint": "^5.12.1",
+    "typescript": "^3.4.5",
+    "vscode-uri": "^3.0.2"
+  },
+  "dependencies": {
+    "antlr4": "4.8.0"
   }
 }

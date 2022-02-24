@@ -1,0 +1,14 @@
+.vscode/**
+.cloudide/**
+.vscode-test/**
+out/test/**
+src/**
+.gitignore
+jest.config.js
+vsc-extension-quickstart.md
+**/tsconfig.json
+**/tslint.json
+**/*.map
+**/*.ts
+node_modules/
+.mockcommandsrc
