@@ -5,6 +5,7 @@ if (process.env.INTEGRATION === 'editor' && !process.env.PRIVATE_TOKEN) {
   console.error('请配置 code token 的环境变量 PRIVATE_TOKEN\n获取地址 https://code.alipay.com/profile/private_tokens\n')
   process.exit(1)
 }
+const styleLoader = require.resolve('style-loader')
 
 module.exports = (env) => ({
   entry: path.join(__dirname, env.entry || 'startup'),
@@ -14,8 +15,19 @@ module.exports = (env) => ({
   },
   devtool: 'inline-source-map',
   mode: 'development',
+  node: {
+    net: 'empty',
+  },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.less'],
+    // webpack v5
+    // fallback: {
+    //   net: false,
+    //   child_process: false,
+    //   http: false,
+    //   https: false,
+    //   fs: false,
+    // }
   },
   module: {
     rules: [
@@ -46,6 +58,93 @@ module.exports = (env) => ({
             },
           },
         ],
+      },
+      {
+        test: /\.module.less$/,
+        use: [
+          {
+            loader: styleLoader,
+            options: {
+              esModule: false,
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              sourceMap: true,
+              esModule: false,
+              modules: {
+                mode: 'local',
+                localIdentName: '[local]___[hash:base64:5]',
+              },
+            },
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /^((?!\.module).)*less$/,
+        use: [
+          {
+            loader: styleLoader,
+            options: {
+              esModule: false,
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              sourceMap: true,
+              esModule: false,
+            },
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+                modifyVars: {
+                  'kt-html-selector': 'alex-root',
+                  'kt-body-selector': 'alex-root',
+                },
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif|webp|ico|svg)(\?.*)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: '[name].[ext]',
+              // require 图片的时候不用加 .default
+              esModule: false,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: '[name].[ext]',
+                  esModule: false,
+                },
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(txt|text|md)$/,
+        use: 'raw-loader',
       },
     ],
   },

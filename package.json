@@ -21,13 +21,18 @@
     "html-webpack-plugin": "^4.5.1",
     "style-loader": "^2.0.0",
     "ts-loader": "^8.0.14",
+    "less-loader": "^7.1.0",
+    "less": "^3.13.1",
+    "url-loader": "^4.1.1",
+    "raw-loader": "^4.0.2",
+
     "typescript": "^4.1.3",
     "webpack": "^4",
     "webpack-cli": "^4.4.0",
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "@alipay/alex": "^1.9.7",
+    "@alipay/alex": "^2.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   },

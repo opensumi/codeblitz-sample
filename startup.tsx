@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { AppRenderer, BrowserFSFileType as FileType } from '@alipay/alex/bundle'
 import '@alipay/alex/bundle/alex.css';
 import '@alipay/alex/languages'
-
+import { RegisterMenuModule } from './modules/registerMenu'
 const dirMap: Record<string, [string, FileType][]> = {
   '/': [
     ['doc', FileType.DIRECTORY],
@@ -55,6 +55,7 @@ const App = () => {
       appConfig={{
         // 工作空间目录
         workspaceDir: 'alex-startup',
+        modules: [RegisterMenuModule]
       }}
       runtimeConfig={{
         // 业务标识
