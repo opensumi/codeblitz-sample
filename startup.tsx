@@ -5,6 +5,8 @@ import { AppRenderer, BrowserFSFileType as FileType } from '@alipay/alex/bundle'
 import '@alipay/alex/bundle/alex.css';
 import '@alipay/alex/languages'
 import { RegisterMenuModule } from './modules/registerMenu'
+import WorkerExample from '@alipay/alex/extensions/alex-demo.worker-example'
+
 const dirMap: Record<string, [string, FileType][]> = {
   '/': [
     ['doc', FileType.DIRECTORY],
@@ -55,7 +57,9 @@ const App = () => {
       appConfig={{
         // 工作空间目录
         workspaceDir: 'alex-startup',
-        modules: [RegisterMenuModule]
+        // 模块在bundle包中无法使用
+        // modules: [RegisterMenuModule]
+        extensionMetadata:[WorkerExample]
       }}
       runtimeConfig={{
         // 业务标识

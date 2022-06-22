@@ -9,6 +9,11 @@ exports.activate = async (ctx) => {
 
   log('start');
 
+  // 注册菜单的命令
+  commands.registerCommand('test.registerMenu', () => {
+    log('执行注册菜单命令')
+  })
+
   commands.registerCommand('plugin.command.test', async () => {
     commands.registerCommand('plugin.command.say', (msg) => {
       log('plugin', msg);

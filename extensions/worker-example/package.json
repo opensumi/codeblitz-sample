@@ -1,6 +1,6 @@
 {
   "name": "worker-example",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "alex-demo",
   "engines": {
     "kaitian": "*"
@@ -9,6 +9,24 @@
     "*"
   ],
   "enableKaitianWebAssets": true,
+  "contributes": {
+    "commands": [
+      {
+        "command": "test.registerMenu",
+        "title": "测试注册菜单",
+        "icon": "$(check)",
+        "category": "Test"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "test.registerMenu",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
   "kaitianContributes": {
     "workerMain": "./worker.js",
     "browserMain": "./browser.js",
