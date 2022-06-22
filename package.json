@@ -66,6 +66,11 @@
       "publisher": "alex-demo",
       "name": "worker-example",
       "version": "0.0.2"
+    },
+    {
+      "publisher": "alex",
+      "name": "editor-diff-ext",
+      "version": "0.0.1"
     }
   ]
 }

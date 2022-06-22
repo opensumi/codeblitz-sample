@@ -21,6 +21,8 @@ import '@alipay/alex/languages/java'
 //#endregion
 
 import WorkerExample from '@alipay/alex/extensions/alex-demo.worker-example'
+import EditorDiff from '@alipay/alex/extensions/alex.editor-diff-ext'
+
 import * as EditorPlugin from './plugin';
 
 const fileOptions = (function transform(obj) {
@@ -132,6 +134,23 @@ const App = () => {
         >
           command test
         </Button>
+        <Button
+          onClick={() => {
+            const commands = EditorPlugin.api.commands;
+            if (commands) {
+              commands.executeCommand('alex.editor.diff',{
+                originalContent: 'aaa \n bbb',
+                modifiedContent: 'bbb \n aaa',
+                originalPath: 'test1.js',
+                modifiedPath: 'test2.js',
+                // title: '标题可不填写'
+              })
+            }
+          }}
+          size="small"
+        >
+          diff test
+        </Button>
       </div>
       <div style={{ display: 'flex' }}>
         <div style={{ width: '50%', minHeight: 500 }}>
@@ -158,7 +177,7 @@ const App = () => {
                 // plugin 配置
                 plugins: [EditorPlugin],
                 // extension
-                extensionMetadata: [WorkerExample],
+                extensionMetadata: [WorkerExample,EditorDiff],
                 // workspaceDir 和标准工作空间概念一样，建议不同项目不同，相对路径即可
                 workspaceDir: project,
                 // 默认配置
