@@ -66,16 +66,36 @@ const App = () => {
         biz: 'alex-startup',
         workspace: {
           // 文件系统
+          // filesystem: {
+          //   fs: 'DynamicRequest',
+          //   options: {
+          //     readDirectory(p: string) {
+          //       return dirMap[p];
+          //     },
+          //     readFile(p) {
+          //       return new TextEncoder().encode(fileMap[p])
+          //     },
+          //   },
+          // }
+
+          // 本地indexedDB文件系统
           filesystem: {
-            fs: 'DynamicRequest',
+            fs: 'OverlayFS',
             options: {
-              readDirectory(p: string) {
-                return dirMap[p];
+              writable: {fs: 'IndexedDB'},
+              readable: {
+                fs: 'DynamicRequest',
+                options: {
+                  readDirectory(p: string) {
+                    return dirMap[p];
+                  },
+                  async readFile(p) {
+                    return new TextEncoder().encode(fileMap[p])
+                  },
+                },
               },
-              readFile(p) {
-                return new TextEncoder().encode(fileMap[p])
-              },
-            },
+
+            }
           }
         },
       }}
