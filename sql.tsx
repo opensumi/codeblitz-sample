@@ -57,7 +57,7 @@ const Editor = () => {
           'editor.autoSaveDelay': 1000, // one second
           'editor.wordBasedSuggestions': true,
           'editor.fixedOverflowWidgets': true,
-          'general.theme': 'ide-light',
+          'general.theme': 'opensumi-light',
           'general.language': 'zh_CN',
         },
         /* //使用本地插件模拟

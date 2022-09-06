@@ -182,8 +182,8 @@ const App = () => {
                 workspaceDir: project,
                 // 默认配置
                 defaultPreferences: {
-                  // 白色主题 ide-light ide-dark
-                  'general.theme': 'ide-light',
+                  // 白色主题  opensumi-light opensumi-dark
+                  'general.theme': 'opensumi-light',
                   // 最后一行禁止继续滚动
                   'editor.scrollBeyondLastLine': false,
                   // 只读模式，目前只读和读写无法切换，设置了后不可更改
