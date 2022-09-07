@@ -212,7 +212,7 @@ const App = () => {
                 hideEditorTab: false,
               }}
               editorConfig={{
-                // 禁用编辑器搜素，只在想用浏览器搜素的情况下禁用，通常不建议
+                // 禁用编辑器搜索，只在想用浏览器搜索的情况下禁用，通常不建议
                 // disableEditorSearch: true,
                 // 展开高度，如果想 editor 不适用虚拟滚动，完全展开代码，则开启
                 // stretchHeight: true,
