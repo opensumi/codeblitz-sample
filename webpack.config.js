@@ -6,7 +6,8 @@ if (process.env.INTEGRATION === 'editor' && !process.env.PRIVATE_TOKEN) {
   process.exit(1)
 }
 const styleLoader = require.resolve('style-loader')
-
+// const antCodeSitHost = 'http://100.83.41.35:80';
+const antCodeSitHost = 'http://code.test.alipay.net';
 module.exports = (env) => ({
   entry: path.join(__dirname, env.entry || 'startup'),
   output: {
@@ -15,8 +16,10 @@ module.exports = (env) => ({
   },
   devtool: 'inline-source-map',
   mode: 'development',
+  // webpack v4
   node: {
     net: 'empty',
+    fs: 'empty'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.less'],
@@ -172,6 +175,17 @@ module.exports = (env) => ({
         changeOrigin: true,
         pathRewrite: {
           '^/code-service': '',
+        },
+      },
+      '/code-test': {
+        target: antCodeSitHost,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/code-test': '',
+        },
+        // changeOrigin 只对 get 有效
+        onProxyReq: (request) => {
+          request.setHeader('origin', antCodeSitHost);
         },
       },
     },
