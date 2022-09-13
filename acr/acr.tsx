@@ -24,7 +24,7 @@ import { lsifService } from './antcode/lsif.service';
 import { repoService } from './antcode/repo.service';
 import { FileActionHeader, FileAction } from './antcode/types/file-action';
 import { useFileReadMarkChange$ } from './hooks';
-import { useLoadLocalExtensionMetadata } from '../common/local-extension.module';
+// import { useLoadLocalExtensionMetadata } from '../common/local-extension.module';
 import acrPlugin from '../common/plugin';
 import CodeBlamePlugin, { ExtensionCommand } from '../common/code-blame.plugin';
 import CodeScaningPlugin from '../common/code-scaning.plugin';
@@ -104,8 +104,6 @@ const App = () => {
     blamePlugin.commands?.executeCommand(ExtensionCommand.setProjectData, projectData);
   }, [pluginActivated, diffsPack]);
 
-  const extensionMetadata = useLoadLocalExtensionMetadata();
-  if (!extensionMetadata) return null;
   if (!diffsPack) return null;
 
   CodeScaningPlugin.setProps({
@@ -187,8 +185,7 @@ const App = () => {
         .with({ path: path.join('/antcode', project.pathWithNamespace, 'raw') })
         .toString(),
       plugins: [acrPlugin, CodeScaningPlugin, blamePlugin],
-      // extensionMetadata: [CodeScaning, CodeBlame],
-      extensionMetadata,
+      extensionMetadata: [CodeScaning, CodeBlame],
     },
   } as IAntcodeCRProps;
 

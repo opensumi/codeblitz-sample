@@ -13,7 +13,7 @@ npm run start
 npx alex ext install cloud-ide-ext.antcode-scaning
 npx alex ext install cloud-ide-ext.editor-plugin-blame
 
-npm run acr
+npm run acr #需绑定 local.alipay.net 到本机 访问 local.alipay.net:8001
 
 # 查看 sql-editor 示例 
 cd extensions/wroker-sql
