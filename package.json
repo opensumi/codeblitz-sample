@@ -5,6 +5,7 @@
   "scripts": {
     "startSql": "webpack serve --config webpack.config.js --env entry=sql",
     "start": "npm run startup",
+    "acr": "webpack serve --config webpack.config.js --env entry=./acr/acr",
     "startup": "webpack serve --config webpack.config.js --env entry=startup",
     "main": "webpack serve --config webpack.config.js --env entry=main",
     "fs": "webpack serve --config webpack.config.js --env entry=filesystem",
@@ -25,7 +26,6 @@
     "less": "^3.13.1",
     "url-loader": "^4.1.1",
     "raw-loader": "^4.0.2",
-
     "typescript": "^4.1.3",
     "webpack": "^4",
     "webpack-cli": "^4.4.0",
@@ -33,8 +33,13 @@
   },
   "dependencies": {
     "@alipay/alex": "^2.0.0",
+    "@alipay/alex-acr": "^2.0.0",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-dom": "^16.14.0",
+    "ahooks": "2",
+    "antd": "^3.20.3",
+    "lodash": "^4.17.21",
+    "sha1": "^1.1.1"
   },
   "cloudideExtensions": [
     {
@@ -71,6 +76,16 @@
       "publisher": "alex",
       "name": "editor-diff-ext",
       "version": "0.0.1"
+    },
+    {
+      "publisher": "cloud-ide-ext",
+      "name": "editor-plugin-blame",
+      "version": "0.2.6"
+    },
+    {
+      "publisher": "cloud-ide-ext",
+      "name": "antcode-scaning",
+      "version": "0.0.14"
     }
   ]
 }

@@ -9,6 +9,12 @@
 # IDE 示例
 npm run start
 
+# Code Review 示例
+npx alex ext install cloud-ide-ext.antcode-scaning
+npx alex ext install cloud-ide-ext.editor-plugin-blame
+
+npm run acr
+
 # 查看 sql-editor 示例 
 cd extensions/wroker-sql
 kaitian watch  #需先下载kaitian  tnpm i kaitian -g
