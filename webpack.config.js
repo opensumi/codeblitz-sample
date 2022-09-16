@@ -1,13 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-if (process.env.INTEGRATION === 'editor' && !process.env.PRIVATE_TOKEN) {
-  console.error('请配置 code token 的环境变量 PRIVATE_TOKEN\n获取地址 https://code.alipay.com/profile/private_tokens\n')
-  process.exit(1)
-}
+require('dotenv').config({ path: path.join(__dirname, './.env') });
 const styleLoader = require.resolve('style-loader')
 // const antCodeSitHost = 'http://100.83.41.35:80';
 const antCodeSitHost = 'http://code.test.alipay.net';
+const antCodeProdHost = 'https://code.alipay.com';
+
 module.exports = (env) => ({
   entry: path.join(__dirname, env.entry || 'startup'),
   output: {
@@ -168,13 +166,17 @@ module.exports = (env) => ({
     contentBase: '/',
     proxy: {
       '/code-service': {
-        target: process.env.CODE_SERVICE_HOST || 'https://code.alipay.com',
+        target: antCodeProdHost,
         headers: {
+          // editor 模式配置环境变量 PRIVATE_TOKEN 获取地址 https://code.alipay.com/profile/private_tokens
           'PRIVATE-TOKEN': process.env.PRIVATE_TOKEN,
         },
         changeOrigin: true,
         pathRewrite: {
           '^/code-service': '',
+        },
+        onProxyReq: (request) => {
+          request.setHeader('origin', antCodeProdHost );
         },
       },
       '/code-test': {

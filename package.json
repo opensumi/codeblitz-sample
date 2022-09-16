@@ -30,7 +30,8 @@
     "webpack": "^4",
     "webpack-cli": "^4.4.0",
     "webpack-dev-server": "^3.11.2",
-    "@alipay/yuyan-monitor-web": "^2.0.28"
+    "@alipay/yuyan-monitor-web": "^2.0.28",
+    "dotenv": "^8.2.0"
   },
   "dependencies": {
     "@alipay/alex": "^2.0.0",
@@ -76,7 +77,7 @@
     {
       "publisher": "alex",
       "name": "editor-diff-ext",
-      "version": "0.0.1"
+      "version": "0.0.3"
     },
     {
       "publisher": "cloud-ide-ext",
