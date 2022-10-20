@@ -38,8 +38,19 @@ export class RegisterMenuContribution implements CommandContribution, MenuContri
           console.log('test command')
         },
       })
+    // 解绑 重命名命令 
+    commands.unregisterCommand('file.rename')
+    commands.registerCommand({ id: 'file.rename' })
   }
 
+  registerKeybindings(keybindings: KeybindingRegistry) {
+    // 自定义注销的快捷键
+    keybindings.unregisterKeybinding({
+      command: 'file.rename',
+      keybinding: 'enter',
+      when: 'filesExplorerFocus && !inputFocus',
+    });
+  }
 }
 
 @Injectable()
