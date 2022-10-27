@@ -6,6 +6,8 @@ import '@alipay/alex/bundle/alex.css';
 import '@alipay/alex/languages'
 import { RegisterMenuModule } from './modules/registerMenu'
 import WorkerExample from '@alipay/alex/extensions/alex-demo.worker-example'
+// YAML 插件
+import yaml from '@alipay/alex/extensions/vscode-extensions.vscode-yaml';
 
 const dirMap: Record<string, [string, FileType][]> = {
   '/': [
@@ -15,6 +17,7 @@ const dirMap: Record<string, [string, FileType][]> = {
     ['hello.py', FileType.FILE],
     ['Hello.java', FileType.FILE],
     ['hello.go', FileType.FILE],
+    ['appveyor.yml', FileType.FILE],
   ],
   '/doc': [
     ['README.md', FileType.FILE],
@@ -48,7 +51,29 @@ import "fmt"
 func main() {
   fmt.Println("Hello, World!")
 }
-`.trimStart()
+`.trimStart(),
+'/appveyor.yml':`# version format
+version: 1.0.{build}
+
+# you can use {branch} name in version format too
+# version: 1.0.{build}-{branch}
+
+# branches to build
+branches:
+  # whitelist
+  only:
+    - master
+    - production
+
+  # blacklist
+  except:
+    - gh-pages
+
+# Do not build on tags (GitHub, Bitbucket, GitLab, Gitea)
+skip_tags: true
+
+# Start builds on tags only (GitHub, BitBucket, GitLab, Gitea)
+skip_non_tags: true`.trimStart()
 }
 
 const App = () => {
@@ -59,7 +84,11 @@ const App = () => {
         workspaceDir: 'alex-startup',
         // 模块在bundle包中无法使用
         // modules: [RegisterMenuModule]
-        extensionMetadata:[WorkerExample]
+        extensionMetadata:[WorkerExample, yaml],
+        defaultPreferences: {
+          // yaml 语法配置
+          "https://json.schemastore.org/appveyor.json": ["appveyor.yaml", "appveyor.yml"],
+        }
       }}
       runtimeConfig={{
         // 业务标识

@@ -88,6 +88,11 @@
       "publisher": "cloud-ide-ext",
       "name": "antcode-scaning",
       "version": "0.0.14"
+    },
+    {
+      "publisher": "vscode-extensions",
+      "name": "vscode-yaml",
+      "version": "1.9.1"
     }
   ]
 }
