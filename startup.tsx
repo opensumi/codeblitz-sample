@@ -18,6 +18,8 @@ const dirMap: Record<string, [string, FileType][]> = {
     ['Hello.java', FileType.FILE],
     ['hello.go', FileType.FILE],
     ['appveyor.yml', FileType.FILE],
+    ['test.yaml', FileType.FILE],
+
   ],
   '/doc': [
     ['README.md', FileType.FILE],
@@ -87,7 +89,10 @@ const App = () => {
         extensionMetadata:[WorkerExample, yaml],
         defaultPreferences: {
           // yaml 语法配置
-          "https://json.schemastore.org/appveyor.json": ["appveyor.yaml", "appveyor.yml"],
+          "yaml.schemas": {
+            "https://json.schemastore.org/appveyor.json": ["appveyor.yaml", "appveyor.yml"],
+            "https://sap.github.io/ui5-tooling/schema/ui5.yaml.json": ['test.yaml']
+          },
         }
       }}
       runtimeConfig={{
