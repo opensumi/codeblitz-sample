@@ -1,12 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 
-import { AppRenderer, BrowserFSFileType as FileType, IAppRendererProps } from '@alipay/alex/bundle';
+import { AppRenderer, BrowserFSFileType as FileType, IAppRendererProps, Uri } from '@alipay/alex';
 import '@alipay/alex/bundle/alex.css';
 import '@alipay/alex/languages';
 
 import Select from 'antd/lib/select';
 import 'antd/lib/select/style/index.css';
+import { IFileServiceClient, FileChangeType } from '@opensumi/ide-file-service/lib/common';
 
 const dirMap: Record<string, [string, FileType][]> = {
   '/': [
@@ -143,6 +144,33 @@ const App = () => {
       <div style={{ height: 'calc(100% - 48px)' }}>
         <AppRenderer
           key={fsType}
+          onLoad={app=> {
+            window.app = app;
+            const fileService = app.injector.get(IFileServiceClient)
+            fileService.onFilesChanged(async e => {
+              // 获取新建的文件
+              const createFiles =  e.filter(f => {
+                // FileChangeType
+                // UPDATED = 0,
+                // ADDED = 1,
+                // DELETED = 2
+                if(f.type ===1){
+                  return f;
+                }
+              })
+              const promiseAll: Promise<any>[] = [];
+              createFiles.map( file => {
+                const uri = file.uri;
+                promiseAll.push(fileService.readFile(uri));
+              })
+              
+              await Promise.all(promiseAll).then(res => {
+                res.map(r => {
+                  console.log(r.content.toString())
+                })
+              })
+            });
+          }}
           appConfig={{
             workspaceDir: 'filesystem',
             defaultPreferences: {
