@@ -10,6 +10,7 @@
     "main": "webpack serve --config webpack.config.js --env entry=main",
     "fs": "webpack serve --config webpack.config.js --env entry=filesystem",
     "editor": "webpack serve --config webpack.config.js --env entry=editor",
+    "search": "webpack serve --config webpack.config.js --env entry=search",
     "ext": "npx alex ext"
   },
   "author": "",
@@ -94,5 +95,6 @@
       "name": "vscode-yaml",
       "version": "1.9.1"
     }
-  ]
+  ],
+  "repository": "git@gitlab.alipay-inc.com:alexgroup/alex-demo.git"
 }
