@@ -1,4 +1,4 @@
-import { ToolBarRightBtn } from '../components/zipButton';
+import { ToolBarRightBtn, FullScreenBtn } from '../components/zipButton';
 import { requireModule } from "@alipay/alex/bundle";
 const FileService = requireModule("@opensumi/ide-file-service");
 const CommpnDI = requireModule("@opensumi/di");
@@ -45,6 +45,17 @@ class RegisterMenuContribution {
       description: 'zip下载',
       component: ToolBarRightBtn,
       id: 'toolbar-right-btn',
+      weight: 1,
+      preferredPosition: {
+        location: 'menu-right',
+      },
+      neverCollapse: true,
+    });
+
+    registry.registerToolbarAction({
+      description: '全屏',
+      component: FullScreenBtn,
+      id: 'full-screen',
       weight: 1,
       preferredPosition: {
         location: 'menu-right',

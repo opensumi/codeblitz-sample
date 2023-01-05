@@ -1,7 +1,8 @@
 import React from "react";
 import { requireModule } from "@alipay/alex/bundle";
-import JSZip from 'jszip';
-import { saveAs } from 'file-saver';
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
+import { FullScreenToken } from "../zip";
 export interface FileStat {
   /**
    * 资源路径
@@ -94,36 +95,36 @@ export interface MapStat {
   children?: FileStat[];
 }
 const FileService = requireModule("@opensumi/ide-file-service");
-const CommpnDI = requireModule("@opensumi/di");
 const CoreBrowser = requireModule("@opensumi/ide-core-browser");
+
 const fs = requireModule("fs");
 
 const { Button } = requireModule("@opensumi/ide-components");
 
 const { IFileServiceClient } = FileService;
-const { useInjectable, URI } = CoreBrowser;
+const { useInjectable, URI, CommandService} = CoreBrowser;
 
 let fileMap = new Map<string, MapStat>();
 
 async function getAllFiles(path: string, fileService) {
-  if(path.includes('node_modules')){
-    return
+  if (path.includes("node_modules")) {
+    return;
   }
-  console.log('==> ',path);
-  const uri = URI.parse(path).toString()
+  console.log("==> ", path);
+  const uri = URI.parse(path).toString();
   const res: FileStat = await fileService.getFileStat(uri);
   // @ts-ignore
-  let content: null | BinaryBuffer = null
-  if(!res.isDirectory){
-    content = await fileService.readFile(uri)
+  let content: null | BinaryBuffer = null;
+  if (!res.isDirectory) {
+    content = await fileService.readFile(uri);
   }
 
   fileMap.set(uri, {
     uri: res.uri,
     isDirectory: res.isDirectory,
     type: res.type,
-    content: content ? content.content.toString(): null,
-    children: res.children
+    content: content ? content.content.toString() : null,
+    children: res.children,
   });
 
   if (res) {
@@ -136,37 +137,51 @@ async function getAllFiles(path: string, fileService) {
   }
 }
 
-const rootDir = 'file:///workspace/zip_file_system'
+const rootDir = "file:///workspace/zip_file_system";
 
 export function ToolBarRightBtn() {
   const fileService = useInjectable(IFileServiceClient);
 
   // zip 打包
-  const click = async() => {
+  const click = async () => {
     fileMap = new Map<string, MapStat>();
     // 获取所有文件列表
     await getAllFiles(rootDir, fileService);
     console.log(fileMap);
     const zip = new JSZip();
-    for(let [key, value] of fileMap.entries()){
-      const fullPath = key.slice(rootDir.length+1)
-      const name = fullPath.split('/').pop();
-      if(value.isDirectory && value.children?.length){
+    for (let [key, value] of fileMap.entries()) {
+      const fullPath = key.slice(rootDir.length + 1);
+      const name = fullPath.split("/").pop();
+      if (value.isDirectory && value.children?.length) {
         zip.folder(fullPath);
-      }else {
-        zip.file(fullPath, value.content as string)
+      } else {
+        zip.file(fullPath, value.content as string);
       }
     }
 
-    zip.generateAsync({type:"blob"})
-    .then(function(content) {
-        saveAs(content, "test1.zip");
+    zip.generateAsync({ type: "blob" }).then(function (content) {
+      saveAs(content, "test1.zip");
     });
   };
   return (
     <div>
       <Button type="default" onClick={() => click()}>
         点击生成上传zip
+      </Button>
+    </div>
+  );
+}
+
+export function FullScreenBtn() {
+  const commandService = useInjectable(CommandService);
+
+  const click = async () => {
+    commandService.executeCommand('alex.zip.setFullScreen')
+  }
+  return (
+    <div>
+      <Button type="default" onClick={() => click()}>
+        全屏
       </Button>
     </div>
   );

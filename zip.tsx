@@ -6,6 +6,7 @@ import '@alipay/alex/bundle/alex.css';
 import '@alipay/alex/languages';
 import typescript from '@alipay/alex/extensions/alex-ext-public.typescript-language-features-worker';
 import { getDefaultLayoutConfig, RegisterZipMenuModule } from './modules/registerZipMenu';
+import ZipPlugin from './common/zipPlugin';
 
 let zipData: Buffer;
 
@@ -24,26 +25,53 @@ const zipDataPromise = (async () => {
   zipData = Buffer.from(new Uint8Array(buf));
 })();
 
+export const FullScreenToken = Symbol('FullScreenToken');
+
 
 const App = () => {
+
+  const [isFullScreen, setFullscreen] = useState<boolean>(false);
+
+  const zipPlugin = useMemo(() => {
+    return new ZipPlugin(
+      () => setFullscreen(true),
+      () => setFullscreen(false),
+      isFullScreen
+    );
+  }, []);
+
   return (
-    <div style={{ height: '100%' }}>
-      <div style={{ height: '100%' }}>
+    <div style={{ height: '100%', padding: '100px', backgroundColor: '#ccc'}}>
+      <div style={{
+        position: isFullScreen ? 'fixed' : 'static',
+        height: isFullScreen ? '100vh' : '100%',
+        top: isFullScreen ? 0 : 0,
+        left: isFullScreen ? 0 : 0,
+        width: '100%'
+      }}>
         <AppRenderer
           key='zip'
           onLoad={app=> {
             window.app = app;
+            // app.injector.addProviders({
+            //   token: FullScreenToken,
+            //   useFactory: (inject) => {
+            //     setFullscreen(!isFullScreen); 
+            //   },
+            // })
           }}
           appConfig={{
             workspaceDir: 'zip_file_system',
             defaultPreferences: {
               'general.theme': 'opensumi-light',
+              'editor.guides.bracketPairs': false,
             },
             layoutConfig: getDefaultLayoutConfig(),
             extensionMetadata: [
               typescript
             ],
-            modules: [RegisterZipMenuModule]
+            modules: [RegisterZipMenuModule],
+            plugins: [zipPlugin]
           }}
           runtimeConfig={{
             biz: 'zipFS',
