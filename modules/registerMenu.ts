@@ -2,7 +2,7 @@ import { Injectable, Provider, Autowired } from '@opensumi/di';
 import { BrowserModule, CommandContribution, CommandRegistry, Disposable, Domain, AppConfig } from '@opensumi/ide-core-browser';
 import { MenuContribution, IMenuRegistry, MenuId } from '@opensumi/ide-core-browser/lib/menu/next';
 
-import { ComponentMenuGroupDivider } from './ComponentMenuGroupDivider';
+import { ComponentMenuGroupDivider } from '../components/ComponentMenuGroupDivider';
 
 
 const TESTCOMMAND = {

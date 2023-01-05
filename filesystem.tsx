@@ -1,13 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 
-import { AppRenderer, BrowserFSFileType as FileType, IAppRendererProps, Uri } from '@alipay/alex';
+import { AppRenderer, BrowserFSFileType as FileType, IAppRendererProps, Uri , requireModule} from '@alipay/alex/bundle';
 import '@alipay/alex/bundle/alex.css';
 import '@alipay/alex/languages';
-
 import Select from 'antd/lib/select';
 import 'antd/lib/select/style/index.css';
-import { IFileServiceClient, FileChangeType } from '@opensumi/ide-file-service/lib/common';
 
 const dirMap: Record<string, [string, FileType][]> = {
   '/': [
@@ -24,6 +22,9 @@ const dirMap: Record<string, [string, FileType][]> = {
   ],
 };
 
+const FileService = requireModule('@opensumi/ide-file-service');
+const { IFileServiceClient } = FileService;
+
 let zipData: Buffer;
 
 const zipDataPromise = (async () => {
@@ -35,7 +36,7 @@ const zipDataPromise = (async () => {
 })();
 
 const App = () => {
-  const [fsType, setFsType] = useState<string>('');
+  const [fsType, setFsType] = useState<string>('OverlayFS');
 
   const filesystem = useMemo<
     NonNullable<IAppRendererProps['runtimeConfig']['workspace']>['filesystem'] | undefined
@@ -108,17 +109,9 @@ const App = () => {
           options: {
             writable: { fs: 'InMemory' },
             readable: {
-              fs: 'DynamicRequest',
+              fs: 'ZipFS',
               options: {
-                readDirectory(p: string) {
-                  return dirMap[p];
-                },
-                async readFile(p) {
-                  const res = await fetch(
-                    `http://alipay-rmsdeploy-image.cn-hangzhou.alipay.aliyun-inc.com/green-trail-test/a87fb80d-3028-4b19-93a9-2da6f871f369/koa${p}`
-                  );
-                  return new Uint8Array(await res.arrayBuffer());
-                },
+                zipData,
               },
             },
           },
