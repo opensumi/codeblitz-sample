@@ -11,6 +11,7 @@
     "fs": "webpack serve --config webpack.config.js --env entry=filesystem",
     "editor": "webpack serve --config webpack.config.js --env entry=editor",
     "search": "webpack serve --config webpack.config.js --env entry=search",
+    "zip": "webpack serve --config webpack.config.js --env entry=zip",
     "ext": "npx alex ext"
   },
   "author": "",
@@ -37,11 +38,13 @@
   "dependencies": {
     "@alipay/alex": "^2.0.0",
     "@alipay/alex-acr": "^2.0.0",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
     "ahooks": "2",
     "antd": "^3.20.3",
+    "file-saver": "^2.0.5",
+    "jszip": "^3.10.1",
     "lodash": "^4.17.21",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "sha1": "^1.1.1"
   },
   "cloudideExtensions": [
@@ -94,6 +97,81 @@
       "publisher": "vscode-extensions",
       "name": "vscode-yaml",
       "version": "1.9.1"
+    },
+    {
+      "publisher": "opensumi-lite-extensions",
+      "name": "anycode",
+      "version": "0.0.67"
+    },
+    {
+      "publisher": "opensumi-lite-extensions",
+      "name": "anycode-c-sharp",
+      "version": "0.0.5"
+    },
+    {
+      "publisher": "opensumi-lite-extensions",
+      "name": "anycode-cpp",
+      "version": "0.0.5"
+    },
+    {
+      "publisher": "opensumi-lite-extensions",
+      "name": "anycode-go",
+      "version": "0.0.5"
+    },
+    {
+      "publisher": "opensumi-lite-extensions",
+      "name": "anycode-java",
+      "version": "0.0.5"
+    },
+    {
+      "publisher": "opensumi-lite-extensions",
+      "name": "anycode-php",
+      "version": "0.0.6"
+    },
+    {
+      "publisher": "opensumi-lite-extensions",
+      "name": "anycode-python",
+      "version": "0.0.5"
+    },
+    {
+      "publisher": "opensumi-lite-extensions",
+      "name": "anycode-rust",
+      "version": "0.0.5"
+    },
+    {
+      "publisher": "opensumi-lite-extensions",
+      "name": "anycode-typescript",
+      "version": "0.0.5"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "css-language-features-worker",
+      "version": "1.53.0-patch.1",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "markdown-language-features-worker",
+      "version": "1.53.0-patch.1",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "html-language-features-worker",
+      "version": "1.53.0-patch.1",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "json-language-features-worker",
+      "version": "1.53.0-patch.1",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "typescript-language-features-worker",
+      "version": "1.53.0-patch.3",
+      "mode": "public"
     }
   ],
   "repository": "git@gitlab.alipay-inc.com:alexgroup/alex-demo.git"
