@@ -51,7 +51,12 @@ const App = () => {
               filesystem: {
                 fs: 'OverlayFS',
                 options: {
-                  writable: { fs: 'InMemory' },
+                  writable: { 
+                    fs: 'IndexedDB',
+                    options: {
+                      storeName: 'zipFS',
+                    },
+                  },
                   readable: {
                     fs: 'ZipFS',
                     options: {
