@@ -5,9 +5,9 @@ import { AppRenderer, BrowserFSFileType as FileType, IAppRendererProps, Uri , re
 import '@alipay/alex/bundle/alex.css';
 import '@alipay/alex/languages';
 import typescript from '@alipay/alex/extensions/alex-ext-public.typescript-language-features-worker';
-import { getDefaultLayoutConfig, RegisterZipMenuModule } from './modules/registerZipMenu';
+import { DOWNLOAD_ZIP, getDefaultLayoutConfig, RegisterZipMenuModule } from './modules/registerZipMenu';
 import ZipPlugin from './common/zipPlugin';
-
+import { ToolBarRightBtn} from './components/zipButton'
 let zipData: Buffer;
 
 const zipDataPromise = (async () => {
@@ -40,8 +40,14 @@ const App = () => {
     );
   }, []);
 
+  const downloadZip = () => {
+    zipPlugin.commands?.executeCommand(DOWNLOAD_ZIP)
+  }
   return (
     <div style={{ height: '100%', padding: '100px', backgroundColor: '#ccc'}}>
+      <div>
+        <button onClick={() => downloadZip()}>点击下载zip</button>
+      </div>
       <div style={{
         position: isFullScreen ? 'fixed' : 'static',
         height: isFullScreen ? '100vh' : '100%',

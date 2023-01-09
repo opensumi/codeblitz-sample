@@ -96,21 +96,21 @@ export interface MapStat {
 }
 const FileService = requireModule("@opensumi/ide-file-service");
 const CoreBrowser = requireModule("@opensumi/ide-core-browser");
+const CommpnDI = requireModule("@opensumi/di");
 
 const fs = requireModule("fs");
+const { Injectable, Injector } = CommpnDI;
 
 const { Button } = requireModule("@opensumi/ide-components");
 
-const { IFileServiceClient } = FileService;
 const { useInjectable, URI, CommandService} = CoreBrowser;
 
 let fileMap = new Map<string, MapStat>();
 
-async function getAllFiles(path: string, fileService) {
+export async function getAllFiles(path: string, fileService) {
   if (path.includes("node_modules")) {
     return;
   }
-  console.log("==> ", path);
   const uri = URI.parse(path).toString();
   const res: FileStat = await fileService.getFileStat(uri);
   // @ts-ignore
@@ -137,40 +137,30 @@ async function getAllFiles(path: string, fileService) {
   }
 }
 
-const rootDir = "file:///workspace/zip_file_system";
-
-export function ToolBarRightBtn() {
-  const fileService = useInjectable(IFileServiceClient);
-
-  // zip 打包
-  const click = async () => {
-    fileMap = new Map<string, MapStat>();
-    // 获取所有文件列表
-    await getAllFiles(rootDir, fileService);
-    console.log(fileMap);
-    const zip = new JSZip();
-    for (let [key, value] of fileMap.entries()) {
-      const fullPath = key.slice(rootDir.length + 1);
-      const name = fullPath.split("/").pop();
-      if (value.isDirectory && value.children?.length) {
-        zip.folder(fullPath);
-      } else {
-        zip.file(fullPath, value.content as string);
-      }
+// zip 打包
+export const click = async (fileService) => {
+  fileMap = new Map<string, MapStat>();
+  // 获取所有文件列表
+  await getAllFiles(rootDir, fileService);
+  console.log(fileMap);
+  const zip = new JSZip();
+  for (let [key, value] of fileMap.entries()) {
+    const fullPath = key.slice(rootDir.length + 1);
+    const name = fullPath.split("/").pop();
+    if (value.isDirectory && value.children?.length) {
+      zip.folder(fullPath);
+    } else {
+      zip.file(fullPath, value.content as string);
     }
+  }
 
-    zip.generateAsync({ type: "blob" }).then(function (content) {
-      saveAs(content, "test1.zip");
-    });
-  };
-  return (
-    <div>
-      <Button type="default" onClick={() => click()}>
-        点击生成上传zip
-      </Button>
-    </div>
-  );
-}
+  zip.generateAsync({ type: "blob" }).then(function (content) {
+    saveAs(content, "test1.zip");
+  });
+};
+
+
+export const rootDir = "file:///workspace/zip_file_system";
 
 export function FullScreenBtn() {
   const commandService = useInjectable(CommandService);

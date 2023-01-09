@@ -1,11 +1,12 @@
-import { ToolBarRightBtn, FullScreenBtn } from '../components/zipButton';
+import { ToolBarRightBtn, FullScreenBtn, click } from '../components/zipButton';
 import { requireModule } from "@alipay/alex/bundle";
 const FileService = requireModule("@opensumi/ide-file-service");
 const CommpnDI = requireModule("@opensumi/di");
 const CoreBrowser = requireModule("@opensumi/ide-core-browser");
+const { IFileServiceClient } = FileService;
 
-const { Injectable } = CommpnDI;
-const { Domain, BrowserModule, SlotLocation, ToolBarActionContribution, MenuId} = CoreBrowser;
+const { Injectable, Autowired, INJECTOR_TOKEN} = CommpnDI;
+const { Domain, BrowserModule, SlotLocation, ToolBarActionContribution, MenuId, CommandContribution} = CoreBrowser;
 
 export const getDefaultLayoutConfig = () => ({
   [SlotLocation.top]: {
@@ -33,24 +34,28 @@ export const getDefaultLayoutConfig = () => ({
     modules: ['@opensumi/ide-toolbar-action'],
   }
 });
+export const DOWNLOAD_ZIP = 'commands.download.zip';
 
+@Domain(ToolBarActionContribution,CommandContribution)
+class RegisterMenuContribution  {
 
-@Domain(ToolBarActionContribution)
-class RegisterMenuContribution {
+  @Autowired(INJECTOR_TOKEN)
+  private readonly injector;
+
   registerToolbarActions(registry) {
     registry.addLocation('menu-right');
     registry.setDefaultLocation('menu-right');
 
-    registry.registerToolbarAction({
-      description: 'zip下载',
-      component: ToolBarRightBtn,
-      id: 'toolbar-right-btn',
-      weight: 1,
-      preferredPosition: {
-        location: 'menu-right',
-      },
-      neverCollapse: true,
-    });
+    // registry.registerToolbarAction({
+    //   description: 'zip下载',
+    //   component: ToolBarRightBtn,
+    //   id: 'toolbar-right-btn',
+    //   weight: 1,
+    //   preferredPosition: {
+    //     location: 'menu-right',
+    //   },
+    //   neverCollapse: true,
+    // });
 
     registry.registerToolbarAction({
       description: '全屏',
@@ -66,6 +71,21 @@ class RegisterMenuContribution {
   registerMenus(menus) {
     // 由于目前 toolbar 尚未处理插件自定义组件展示，因此先卸载掉toolbar的右键
     menus.unregisterMenuId(MenuId.KTToolbarLocationContext);
+  }
+  // 注册下载命令
+  registerCommands(commands): void {
+    commands.registerCommand(
+      {
+        id: DOWNLOAD_ZIP,
+        label: 'zip下载',
+      },
+      {
+        execute: async () => {
+          const fileService = this.injector.get(IFileServiceClient);
+          await click(fileService);
+        },
+      }
+    );
   }
 }
 
