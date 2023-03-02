@@ -1,6 +1,5 @@
 # alex-demo
 
-
 ## Alex 文档地址 [对接文档](https://yuque.antfin-inc.com/cloud-ide/alex/ad0sp7)
 
 ## 快速开始
@@ -30,11 +29,13 @@ PRIVATE_TOKEN=<token> npm run editor
 ```
 
 ### 安装扩展
+
 ```bash
 npm run ext
 ```
 
 ### alex 命令
+
 ```bash
 #安装扩展
 npx alex ext install <extension>  # npx alex ext i alex-demo.worker-example
