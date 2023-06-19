@@ -8,6 +8,7 @@ import { RegisterMenuModule } from './modules/registerMenu'
 import WorkerExample from '@alipay/alex/extensions/alex-demo.worker-example'
 // YAML 插件
 import yaml from '@alipay/alex/extensions/vscode-extensions.vscode-yaml';
+import { unregisterKeybindingModule } from './modules/unregisterKeybinding';
 
 const dirMap: Record<string, [string, FileType][]> = {
   '/': [
@@ -84,8 +85,7 @@ const App = () => {
       appConfig={{
         // 工作空间目录
         workspaceDir: 'alex-startup',
-        // 模块在bundle包中无法使用
-        // modules: [RegisterMenuModule]
+        // modules:[unregisterKeybindingModule],
         extensionMetadata:[WorkerExample, yaml],
         defaultPreferences: {
           // yaml 语法配置

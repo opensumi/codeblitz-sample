@@ -36,8 +36,8 @@
     "dotenv": "^8.2.0"
   },
   "dependencies": {
-    "@alipay/alex": "^2.0.0",
-    "@alipay/alex-acr": "^2.0.0",
+    "@alipay/alex": "2.2.4",
+    "@alipay/alex-acr": "2.2.4",
     "ahooks": "2",
     "antd": "^3.20.3",
     "file-saver": "^2.0.5",
