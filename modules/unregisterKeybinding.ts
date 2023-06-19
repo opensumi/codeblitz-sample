@@ -17,7 +17,7 @@ export class KeybindContribution
   // implements KeybindingContribution, MenuContribution
 {
   // 命令解绑
-  // 也可疑通过 RuntimeConfig 内 unregisterKeybindings 方法注销
+  // 也可以通过 RuntimeConfig 内 unregisterKeybindings 方法注销
   registerKeybindings(keybindings: KeybindingRegistry) {
     const keybindingList = [
       'ctrlcmd+,',
