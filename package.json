@@ -7,6 +7,7 @@
     "start": "npm run startup",
     "acr": "webpack serve --config webpack.config.js --env entry=./acr/acr",
     "startup": "webpack serve --config webpack.config.js --env entry=startup",
+    "code": "webpack serve --config webpack.config.js --env entry=code",
     "main": "webpack serve --config webpack.config.js --env entry=main",
     "fs": "webpack serve --config webpack.config.js --env entry=filesystem",
     "editor": "webpack serve --config webpack.config.js --env entry=editor",
@@ -36,7 +37,7 @@
     "dotenv": "^8.2.0"
   },
   "dependencies": {
-    "@alipay/alex": "2.2.4",
+    "@alipay/alex": "2.3.2-rc.2",
     "@alipay/alex-acr": "2.2.4",
     "ahooks": "2",
     "antd": "^3.20.3",
@@ -47,32 +48,10 @@
     "react-dom": "^16.14.0",
     "sha1": "^1.1.1"
   },
+  "resolutions": {
+    "@rjsf/core": "5.5.2"
+  },
   "cloudideExtensions": [
-    {
-      "publisher": "alex",
-      "name": "css-language-features-worker",
-      "version": "1.53.0-patch.1"
-    },
-    {
-      "publisher": "alex",
-      "name": "markdown-language-features-worker",
-      "version": "1.53.0-patch.1"
-    },
-    {
-      "publisher": "alex",
-      "name": "html-language-features-worker",
-      "version": "1.53.0-patch.1"
-    },
-    {
-      "publisher": "alex",
-      "name": "json-language-features-worker",
-      "version": "1.53.0-patch.1"
-    },
-    {
-      "publisher": "alex",
-      "name": "typescript-language-features-worker",
-      "version": "1.53.0-patch.2"
-    },
     {
       "publisher": "alex-demo",
       "name": "worker-example",
@@ -84,64 +63,10 @@
       "version": "0.0.3"
     },
     {
-      "publisher": "cloud-ide-ext",
-      "name": "editor-plugin-blame",
-      "version": "0.2.6"
-    },
-    {
-      "publisher": "cloud-ide-ext",
-      "name": "antcode-scaning",
-      "version": "0.0.14"
-    },
-    {
-      "publisher": "vscode-extensions",
-      "name": "vscode-yaml",
-      "version": "1.9.1"
-    },
-    {
-      "publisher": "opensumi-lite-extensions",
-      "name": "anycode",
-      "version": "0.0.67"
-    },
-    {
-      "publisher": "opensumi-lite-extensions",
-      "name": "anycode-c-sharp",
-      "version": "0.0.5"
-    },
-    {
-      "publisher": "opensumi-lite-extensions",
-      "name": "anycode-cpp",
-      "version": "0.0.5"
-    },
-    {
-      "publisher": "opensumi-lite-extensions",
-      "name": "anycode-go",
-      "version": "0.0.5"
-    },
-    {
-      "publisher": "opensumi-lite-extensions",
-      "name": "anycode-java",
-      "version": "0.0.5"
-    },
-    {
-      "publisher": "opensumi-lite-extensions",
-      "name": "anycode-php",
-      "version": "0.0.6"
-    },
-    {
-      "publisher": "opensumi-lite-extensions",
-      "name": "anycode-python",
-      "version": "0.0.5"
-    },
-    {
-      "publisher": "opensumi-lite-extensions",
-      "name": "anycode-rust",
-      "version": "0.0.5"
-    },
-    {
-      "publisher": "opensumi-lite-extensions",
-      "name": "anycode-typescript",
-      "version": "0.0.5"
+      "publisher": "alex-ext-public",
+      "name": "web-scm",
+      "version": "0.3.6",
+      "mode": "public"
     },
     {
       "publisher": "alex-ext-public",
@@ -171,6 +96,113 @@
       "publisher": "alex-ext-public",
       "name": "typescript-language-features-worker",
       "version": "1.53.0-patch.3",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "gitlens",
+      "version": "10.2.3-2",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex",
+      "name": "code-service",
+      "version": "0.0.1"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "git-graph",
+      "version": "1.30.0-3",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "image-preview",
+      "version": "1.53.0-patch.1",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "anycode",
+      "version": "0.0.67",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "anycode-c-sharp",
+      "version": "0.0.5",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "anycode-cpp",
+      "version": "0.0.5",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "anycode-go",
+      "version": "0.0.5",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "anycode-java",
+      "version": "0.0.5",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "anycode-php",
+      "version": "0.0.6",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "anycode-python",
+      "version": "0.0.5",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "anycode-rust",
+      "version": "0.0.5",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "anycode-typescript",
+      "version": "0.0.5",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "references-view",
+      "version": "1.0.0",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "emmet",
+      "version": "1.0.0",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "codeswing",
+      "version": "0.0.21",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "code-runner-for-web",
+      "version": "0.1.5-patch.1",
+      "mode": "public"
+    },
+    {
+      "publisher": "alex-ext-public",
+      "name": "merge-conflict",
+      "version": "1.0.0",
       "mode": "public"
     }
   ],

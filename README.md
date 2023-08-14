@@ -24,6 +24,9 @@ npm run startSql
 # 查看 filesystem 示例
 npm run fs
 
+# 查看 对接代码平台 示例
+npm run code
+
 # 查看 基础editor 示例，需设置环境变量token     PRIVATE_TOKEN http://code.alipay.com/profile/private_tokens
 PRIVATE_TOKEN=<token> npm run editor
 ```
