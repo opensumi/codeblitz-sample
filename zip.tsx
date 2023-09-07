@@ -1,13 +1,13 @@
 // 接收zip文件 保存后在输出zip
 import React, { useState, useMemo } from 'react';
 import ReactDOM from 'react-dom';
-import { AppRenderer, BrowserFSFileType as FileType, IAppRendererProps, Uri , requireModule} from '@alipay/alex/bundle';
-import '@alipay/alex/bundle/alex.css';
-import '@alipay/alex/languages';
-import typescript from '@alipay/alex/extensions/alex-ext-public.typescript-language-features-worker';
+import { AppRenderer } from '@codeblitzjs/ide-core';
+import '@codeblitzjs/ide-core/bundle/codeblitz.css';
+import '@codeblitzjs/ide-core/languages';
+import typescript from '@codeblitzjs/ide-core/extensions/codeblitz.typescript-language-features-worker';
 import { DOWNLOAD_ZIP, getDefaultLayoutConfig, RegisterZipMenuModule } from './modules/registerZipMenu';
 import ZipPlugin from './common/zipPlugin';
-import { ToolBarRightBtn} from './components/zipButton'
+
 let zipData: Buffer;
 
 const zipDataPromise = (async () => {
@@ -80,7 +80,6 @@ const App = () => {
             plugins: [zipPlugin]
           }}
           runtimeConfig={{
-            biz: 'zipFS',
             workspace: {
               filesystem: {
                 fs: 'OverlayFS',

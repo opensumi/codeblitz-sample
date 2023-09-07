@@ -1,7 +1,7 @@
 {
   "name": "worker-example",
   "version": "0.0.3",
-  "publisher": "alex-demo",
+  "publisher": "codeblitz",
   "engines": {
     "kaitian": "*"
   },

@@ -3,50 +3,48 @@ import ReactDOM from 'react-dom';
 import Button from 'antd/lib/button';
 import 'antd/lib/button/style/index.css';
 
-//#region alex
-import { AppRenderer, SlotLocation, SlotRenderer, SplitPanel, BoxPanel, IAppInstance } from '@alipay/alex/bundle'
-import '@alipay/alex/bundle/alex.css';
+//#region codeblitz
+import { AppRenderer, SlotLocation, SlotRenderer, SplitPanel, BoxPanel, IAppInstance } from '@codeblitzjs/ide-core'
+import '@codeblitzjs/ide-core/bundle/codeblitz.css';
 //#endregion
 
 //#region 语法高亮
-import '@alipay/alex/languages/html';
-import '@alipay/alex/languages/handlebars';
-import '@alipay/alex/languages/css';
-import '@alipay/alex/languages/scss';
-import '@alipay/alex/languages/less';
-import '@alipay/alex/languages/javascript';
-import '@alipay/alex/languages/typescript';
-import '@alipay/alex/languages/json';
+import '@codeblitzjs/ide-core/languages/html';
+import '@codeblitzjs/ide-core/languages/handlebars';
+import '@codeblitzjs/ide-core/languages/css';
+import '@codeblitzjs/ide-core/languages/scss';
+import '@codeblitzjs/ide-core/languages/less';
+import '@codeblitzjs/ide-core/languages/javascript';
+import '@codeblitzjs/ide-core/languages/typescript';
+import '@codeblitzjs/ide-core/languages/json';
 //#endregion
 
 //#region 语言功能
-import html from '@alipay/alex/extensions/alex.html-language-features-worker'
-import css from '@alipay/alex/extensions/alex.css-language-features-worker'
-import typescript from '@alipay/alex/extensions/alex.typescript-language-features-worker'
-import json from '@alipay/alex/extensions/alex.json-language-features-worker'
-import WorkerExample from '@alipay/alex/extensions/alex-demo.worker-example'
+import html from '@codeblitzjs/ide-core/extensions/codeblitz.html-language-features-worker';
+import css from '@codeblitzjs/ide-core/extensions/codeblitz.css-language-features-worker';
+import typescript from '@codeblitzjs/ide-core/extensions/codeblitz.typescript-language-features-worker';
+import json from '@codeblitzjs/ide-core/extensions/codeblitz.json-language-features-worker';
+import WorkerExample from './extensions/worker-example/worker-example';
 //#endregion
 
 //#region 获取内置模块，提供 IDE 层面的控制能力
-import fs from '@alipay/alex/shims/fs';
-import path from '@alipay/alex/shims/path';
-import { IEditorDocumentModelService } from '@alipay/alex/modules/ide-editor'
-import { CommandService, EDITOR_COMMANDS, URI } from '@alipay/alex/modules/ide-core-browser'
+import { IEditorDocumentModelService } from '@codeblitzjs/ide-core/modules/ide-editor'
+import { CommandService, EDITOR_COMMANDS, URI } from '@codeblitzjs/ide-core/modules/ide-core-browser'
 //#endregion
 
 // 布局配置，可根据需要增删模块
 export const layoutConfig = {
   [SlotLocation.left]: {
-    modules: ['@ali/ide-explorer'],
+    modules: ['@opensumi/ide-explorer'],
   },
   [SlotLocation.main]: {
-    modules: ['@ali/ide-editor'],
+    modules: ['@opensumi/ide-editor'],
   },
   // [SlotLocation.bottom]: {
-  //   modules: ['@ali/ide-output', '@ali/ide-markers'],
+  //   modules: ['@opensumi/ide-output', '@opensumi/ide-markers'],
   // },
   [SlotLocation.statusBar]: {
-    modules: ['@ali/ide-status-bar'],
+    modules: ['@opensumi/ide-status-bar'],
   },
 };
 
@@ -139,8 +137,6 @@ const App: React.FC = () => {
             extensionMetadata: [html, css, typescript, json, WorkerExample]
           }}
           runtimeConfig={{
-            // 根据实际 biz 填写
-            biz: 'alex-demo',
             // 禁止就改文件树，此时无法新增、删除、重命名文件
             disableModifyFileTree: true,
             // 默认打开文件

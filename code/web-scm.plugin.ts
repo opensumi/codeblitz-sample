@@ -1,7 +1,7 @@
-import type { IPluginAPI } from '@alipay/alex/lib/editor';
+import type { IPluginAPI } from '@codeblitzjs/ide-core/lib/editor';
 import * as localforage from 'localforage';
-import type { Uri } from '@alipay/alex';
-import { Deferred } from '@alipay/alex/lib/modules/opensumi__ide-core-browser';
+import type { Uri } from '@codeblitzjs/ide-core';
+import { Deferred } from '@codeblitzjs/ide-core/lib/modules/opensumi__ide-core-browser';
 
 export const PLUGIN_ID = 'web-scm';
 

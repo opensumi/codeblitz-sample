@@ -7,10 +7,10 @@ import {
   BrowserModule,
   FsProviderContribution,
 } from '@opensumi/ide-core-browser';
-import { ExtensionServiceClientImpl, IExtensionNodeClientService } from '@alipay/alex-core';
-import { IExtensionMetadata, IExtensionBasicMetadata } from '@alipay/alex-shared';
+import { ExtensionServiceClientImpl, IExtensionNodeClientService } from '@codeblitzjs/ide-core-core';
+import { IExtensionMetadata, IExtensionBasicMetadata } from '@codeblitzjs/ide-core-shared';
 import { IFileServiceClient } from '@opensumi/ide-file-service';
-import { KaitianExtFsProvider } from '@alipay/alex-core';
+import { KaitianExtFsProvider } from '@codeblitzjs/ide-core-core';
 
 import {
   StaticResourceContribution,

@@ -1,7 +1,6 @@
-import { IPluginModule, IPluginAPI } from '@alipay/alex/lib/editor';
+import { IPluginModule, IPluginAPI } from '@codeblitzjs/ide-core/lib/editor';
 
 export enum ExtensionCommand {
-  acrToggleBlame = 'code.blame.acrToggleBlame',
   linkToCommit = 'code.blame.linktocommit',
   onActive = 'code.blame.extension.active',
   setProjectData = 'code.blame.setProjectData',

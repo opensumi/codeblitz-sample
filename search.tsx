@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { AppRenderer, requireModule, WORKSPACE_ROOT } from '@alipay/alex/bundle';
-import '@alipay/alex/bundle/alex.css';
-import '@alipay/alex/languages';
+import { AppRenderer, requireModule, WORKSPACE_ROOT } from '@codeblitzjs/ide-core';
+import '@codeblitzjs/ide-core/bundle/codeblitz.css';
+import '@codeblitzjs/ide-core/languages';
 
 let zipData: Buffer;
 
@@ -47,7 +47,6 @@ const App = () => {
           workspaceDir,
         }}
         runtimeConfig={{
-          biz: 'filesystem',
           workspace: {
             filesystem: {
               fs: 'ZipFS',

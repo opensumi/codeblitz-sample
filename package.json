@@ -1,19 +1,16 @@
 {
-  "name": "alex-demo",
+  "name": "codeblitz-sample",
   "version": "1.0.0",
-  "description": "alex demo",
+  "description": "codeblitz sample",
   "scripts": {
-    "startSql": "webpack serve --config webpack.config.js --env entry=sql",
     "start": "npm run startup",
-    "acr": "webpack serve --config webpack.config.js --env entry=./acr/acr",
     "startup": "webpack serve --config webpack.config.js --env entry=startup",
     "code": "webpack serve --config webpack.config.js --env entry=code",
     "main": "webpack serve --config webpack.config.js --env entry=main",
     "fs": "webpack serve --config webpack.config.js --env entry=filesystem",
     "editor": "webpack serve --config webpack.config.js --env entry=editor",
     "search": "webpack serve --config webpack.config.js --env entry=search",
-    "zip": "webpack serve --config webpack.config.js --env entry=zip",
-    "ext": "npx alex ext"
+    "zip": "webpack serve --config webpack.config.js --env entry=zip"
   },
   "author": "",
   "license": "ISC",
@@ -21,28 +18,27 @@
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.10",
     "css-loader": "^5.0.1",
+    "dotenv": "^8.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.1",
+    "less": "^3.13.1",
+    "less-loader": "^7.1.0",
+    "raw-loader": "^4.0.2",
     "style-loader": "^2.0.0",
     "ts-loader": "^8.0.14",
-    "less-loader": "^7.1.0",
-    "less": "^3.13.1",
-    "url-loader": "^4.1.1",
-    "raw-loader": "^4.0.2",
     "typescript": "^4.1.3",
+    "url-loader": "^4.1.1",
     "webpack": "^4",
     "webpack-cli": "^4.4.0",
-    "webpack-dev-server": "^3.11.2",
-    "@alipay/yuyan-monitor-web": "^2.0.28",
-    "dotenv": "^8.2.0"
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "@alipay/alex": "2.3.2-rc.2",
-    "@alipay/alex-acr": "2.2.4",
+    "@codeblitzjs/ide-core": "1.0.3-next.4",
     "ahooks": "2",
     "antd": "^3.20.3",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
+    "localforage": "^1.10.0",
     "lodash": "^4.17.21",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
@@ -50,161 +46,5 @@
   },
   "resolutions": {
     "@rjsf/core": "5.5.2"
-  },
-  "cloudideExtensions": [
-    {
-      "publisher": "alex-demo",
-      "name": "worker-example",
-      "version": "0.0.2"
-    },
-    {
-      "publisher": "alex",
-      "name": "editor-diff-ext",
-      "version": "0.0.3"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "web-scm",
-      "version": "0.3.6",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "css-language-features-worker",
-      "version": "1.53.0-patch.1",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "markdown-language-features-worker",
-      "version": "1.53.0-patch.1",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "html-language-features-worker",
-      "version": "1.53.0-patch.1",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "json-language-features-worker",
-      "version": "1.53.0-patch.1",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "typescript-language-features-worker",
-      "version": "1.53.0-patch.3",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "gitlens",
-      "version": "10.2.3-2",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex",
-      "name": "code-service",
-      "version": "0.0.1"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "git-graph",
-      "version": "1.30.0-3",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "image-preview",
-      "version": "1.53.0-patch.1",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "anycode",
-      "version": "0.0.67",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "anycode-c-sharp",
-      "version": "0.0.5",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "anycode-cpp",
-      "version": "0.0.5",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "anycode-go",
-      "version": "0.0.5",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "anycode-java",
-      "version": "0.0.5",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "anycode-php",
-      "version": "0.0.6",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "anycode-python",
-      "version": "0.0.5",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "anycode-rust",
-      "version": "0.0.5",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "anycode-typescript",
-      "version": "0.0.5",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "references-view",
-      "version": "1.0.0",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "emmet",
-      "version": "1.0.0",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "codeswing",
-      "version": "0.0.21",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "code-runner-for-web",
-      "version": "0.1.5-patch.1",
-      "mode": "public"
-    },
-    {
-      "publisher": "alex-ext-public",
-      "name": "merge-conflict",
-      "version": "1.0.0",
-      "mode": "public"
-    }
-  ],
-  "repository": "git@gitlab.alipay-inc.com:alexgroup/alex-demo.git"
+  }
 }

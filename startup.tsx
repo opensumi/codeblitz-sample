@@ -1,14 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { AppRenderer, BrowserFSFileType as FileType } from '@alipay/alex/bundle'
-import '@alipay/alex/bundle/alex.css';
-import '@alipay/alex/languages'
-import { RegisterMenuModule } from './modules/registerMenu'
-import WorkerExample from '@alipay/alex/extensions/alex-demo.worker-example'
-// YAML 插件
-import yaml from '@alipay/alex/extensions/vscode-extensions.vscode-yaml';
-import { unregisterKeybindingModule } from './modules/unregisterKeybinding';
+import { AppRenderer, BrowserFSFileType as FileType } from '@codeblitzjs/ide-core'
+import '@codeblitzjs/ide-core/bundle/codeblitz.css';
+import '@codeblitzjs/ide-core/languages'
+import WorkerExample from './extensions/worker-example/worker-example'
 
 const dirMap: Record<string, [string, FileType][]> = {
   '/': [
@@ -28,7 +24,7 @@ const dirMap: Record<string, [string, FileType][]> = {
 };
 
 const fileMap = {
-  '/doc/README.md': '# alex-startup\n> alex demo',
+  '/doc/README.md': '# codeblitz-startup\n> codeblitz demo',
   '/hello.html': `
 <!DOCTYPE html>
 <html>
@@ -84,20 +80,11 @@ const App = () => {
     <AppRenderer
       appConfig={{
         // 工作空间目录
-        workspaceDir: 'alex-startup',
+        workspaceDir: 'codeblitz-startup',
         // modules:[unregisterKeybindingModule],
-        extensionMetadata:[WorkerExample, yaml],
-        defaultPreferences: {
-          // yaml 语法配置
-          "yaml.schemas": {
-            "https://json.schemastore.org/appveyor.json": ["appveyor.yaml", "appveyor.yml"],
-            "https://sap.github.io/ui5-tooling/schema/ui5.yaml.json": ['test.yaml']
-          },
-        }
+        extensionMetadata:[WorkerExample],
       }}
       runtimeConfig={{
-        // 业务标识
-        biz: 'alex-startup',
         workspace: {
           // 文件系统
           // filesystem: {

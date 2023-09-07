@@ -8,7 +8,7 @@ import {
   Disposable,
   CommandService,
 } from '@opensumi/ide-core-browser';
-import { CodeModelService } from '@alipay/alex-code-service';
+import { CodeModelService } from '@codeblitzjs/ide-code-service';
 
 @Domain(CommandContribution)
 export class AlexAppContribution extends Disposable implements CommandContribution {

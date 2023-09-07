@@ -1,4 +1,4 @@
-import { IPluginAPI, IPluginModule } from '@alipay/alex/lib/editor';
+import { IPluginAPI, IPluginModule } from '@codeblitzjs/ide-core/lib/editor';
 
 export class Plugin implements IPluginModule {
   PLUGIN_ID = 'PLUGIN_TEST';

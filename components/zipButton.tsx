@@ -1,5 +1,5 @@
 import React from "react";
-import { requireModule } from "@alipay/alex/bundle";
+import { requireModule } from "@codeblitzjs/ide-core/bundle";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { FullScreenToken } from "../zip";

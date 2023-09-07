@@ -1,27 +1,28 @@
 import React, { useState, useMemo } from "react";
 import ReactDOM from "react-dom";
-// 如不需要扩展，从 alex.editor 引入
-import { IAppInstance, EditorRenderer } from "@alipay/alex/lib/editor.all";
-import "@alipay/alex/bundle/alex.editor.all.css";
+// 如不需要扩展，从 codeblitz.editor 引入
+import { IAppInstance, EditorRenderer } from "@codeblitzjs/ide-core/lib/editor.all";
+import { request } from '@codeblitzjs/ide-common';
 
+import "@codeblitzjs/ide-core/bundle/codeblitz.editor.all.css";
 import "antd/dist/antd.css";
+
 import Select from "antd/lib/select";
 import Cascader from "antd/lib/cascader";
 import Button from "antd/lib/button";
 import Spin from "antd/lib/spin";
 
 //#region 语法高亮，根据需要动态注册
-import "@alipay/alex/languages/html";
-import "@alipay/alex/languages/css";
-import "@alipay/alex/languages/javascript";
-import "@alipay/alex/languages/typescript";
-import "@alipay/alex/languages/json";
-import "@alipay/alex/languages/markdown";
-import "@alipay/alex/languages/java";
+import "@codeblitzjs/ide-core/languages/html";
+import "@codeblitzjs/ide-core/languages/css";
+import "@codeblitzjs/ide-core/languages/javascript";
+import "@codeblitzjs/ide-core/languages/typescript";
+import "@codeblitzjs/ide-core/languages/json";
+import "@codeblitzjs/ide-core/languages/markdown";
+import "@codeblitzjs/ide-core/languages/java";
 //#endregion
 
-import WorkerExample from "@alipay/alex/extensions/alex-demo.worker-example";
-import EditorDiff from "@alipay/alex/extensions/alex.editor-diff-ext";
+import WorkerExample from "./extensions/worker-example/worker-example";
 
 import * as EditorPlugin from "./plugin";
 
@@ -36,24 +37,18 @@ const fileOptions = (function transform(obj) {
     };
   });
 })({
-  "chaxuan.wh/qiankun-mirror": {
-    master: ["src/globalState.ts"],
-  },
-  "wealth_release/finstrategy": {
-    f577528518c7c0279f8cdf3de59ae24a80a16607: [
-      "app/biz/service-impl/src/main/java/com/alipay/finstrategy/biz/service/impl/portfolio/msg/TradeMessageListener.java",
+  'opensumi/core': {
+    main: [
+      'README.md',
+      'package.json'
     ],
   },
-  "kaitian/ide-framework": {
-    develop: [
-      "packages/addons/src/browser/file-drop.service.ts",
-      "packages/addons/src/common/index.ts",
-      "OWNERS",
+  'opensumi/codeblitz': {
+    main: [
+      'README.md',
+      'package.json'
     ],
-  },
-  "ide-s/TypeScript-Node-Starter": {
-    "feat/123123": ["gbk.ts"],
-  },
+  }
 });
 
 const App = () => {
@@ -73,15 +68,19 @@ const App = () => {
   };
 
   const readFile = async (filepath: string) => {
-    const res = await fetch(
-      `/code-service/api/v3/projects/${encodeURIComponent(
-        project
-      )}/repository/blobs/${encodeURIComponent(ref)}?filepath=${filepath}`
+    const res = await request(
+      `https://api.github.com/repos/${project}/contents/${filepath}?ref=${ref}`,
+      {
+        headers: {
+          Accept: 'application/vnd.github.v3.raw',
+        },
+        responseType: 'arrayBuffer',
+      },
     );
-    if (res.status >= 200 && res.status < 300) {
-      return new Uint8Array(await res.arrayBuffer());
+    if (res) {
+      return res
     }
-    throw new Error(`${res.status} - ${res.statusText}`);
+    throw new Error(`readFile`);
   };
 
   return (
@@ -196,7 +195,7 @@ const App = () => {
                 // plugin 配置
                 plugins: [EditorPlugin],
                 // extension
-                extensionMetadata: [WorkerExample, EditorDiff],
+                extensionMetadata: [WorkerExample],
                 // workspaceDir 和标准工作空间概念一样，建议不同项目不同，相对路径即可
                 workspaceDir: project,
                 // 默认配置
@@ -222,8 +221,6 @@ const App = () => {
                 },
               }}
               runtimeConfig={{
-                // 业务，必须，用于内部埋点，各业务按照自己的业务名定即可
-                biz: "code",
                 // 场景，在 editor 下推荐传 null，此时不会持久化缓存工作空间数据
                 scenario: null,
                 // 启动时显示的编辑器，editor 下传 none 即可

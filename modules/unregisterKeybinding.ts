@@ -1,5 +1,5 @@
 // 解绑 Keybinding 以及 Menu
-import { requireModule } from "@alipay/alex/bundle";
+import { requireModule } from "@codeblitzjs/ide-core/bundle";
 const CommpnDI = requireModule("@opensumi/di");
 const CoreBrowser = requireModule("@opensumi/ide-core-browser");
 

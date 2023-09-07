@@ -1,4 +1,4 @@
-import { IPluginAPI } from '@alipay/alex/lib/editor';
+import { IPluginAPI } from '@codeblitzjs/ide-core/lib/editor';
 
 export const PLUGIN_ID = 'editor';
 

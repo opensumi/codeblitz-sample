@@ -2,37 +2,37 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { IAppInstance, AppRenderer, getDefaultLayoutConfig, SlotLocation, AppRenderer2 } from '@alipay/alex';
-import '@alipay/alex/languages';
-import { CodeServiceModule } from '@alipay/alex-code-service';
-import { CodeAPIModule, CodePlatform } from '@alipay/alex-code-api';
-import { isFilesystemReady } from '@alipay/alex-core';
+import { IAppInstance, AppRenderer, getDefaultLayoutConfig, SlotLocation, AppRenderer2 } from '@codeblitzjs/ide-core';
+import '@codeblitzjs/ide-core/languages';
+import { CodeServiceModule } from '@codeblitzjs/ide-code-service';
+import { CodeAPIModule, CodePlatform } from '@codeblitzjs/ide-code-api';
+import { isFilesystemReady } from '@codeblitzjs/ide-sumi-core';
 import { StartupModule } from './startup.module';
-import css from '@alipay/alex/extensions/alex-ext-public.css-language-features-worker';
-import html from '@alipay/alex/extensions/alex-ext-public.html-language-features-worker';
-import json from '@alipay/alex/extensions/alex-ext-public.json-language-features-worker';
-import markdown from '@alipay/alex/extensions/alex-ext-public.markdown-language-features-worker';
-import typescript from '@alipay/alex/extensions/alex-ext-public.typescript-language-features-worker';
 
 // 内置插件
-import gitlens from '@alipay/alex/extensions/alex-ext-public.gitlens';
-import graph from '@alipay/alex/extensions/alex-ext-public.git-graph';
-import codeservice from '@alipay/alex/extensions/alex.code-service';
-import imagePreview from '@alipay/alex/extensions/alex-ext-public.image-preview';
-import webSCM from '@alipay/alex/extensions/alex-ext-public.web-scm';
-import anycode from '@alipay/alex/extensions/alex-ext-public.anycode';
-import anycodeCSharp from '@alipay/alex/extensions/alex-ext-public.anycode-c-sharp';
-import anycodeCpp from '@alipay/alex/extensions/alex-ext-public.anycode-cpp';
-import anycodeGo from '@alipay/alex/extensions/alex-ext-public.anycode-go';
-import anycodeJava from '@alipay/alex/extensions/alex-ext-public.anycode-java';
-import anycodePhp from '@alipay/alex/extensions/alex-ext-public.anycode-php';
-import anycodePython from '@alipay/alex/extensions/alex-ext-public.anycode-python';
-import anycodeRust from '@alipay/alex/extensions/alex-ext-public.anycode-rust';
-import anycodeTypescript from '@alipay/alex/extensions/alex-ext-public.anycode-typescript';
-import referencesView from '@alipay/alex/extensions/alex-ext-public.references-view';
-import emmet from '@alipay/alex/extensions/alex-ext-public.emmet';
-import codeswing from '@alipay/alex/extensions/alex-ext-public.codeswing';
-import codeRunner from '@alipay/alex/extensions/alex-ext-public.code-runner-for-web';
+import css from '@codeblitzjs/ide-core/extensions/codeblitz.css-language-features-worker';
+import html from '@codeblitzjs/ide-core/extensions/codeblitz.html-language-features-worker';
+import json from '@codeblitzjs/ide-core/extensions/codeblitz.json-language-features-worker';
+import markdown from '@codeblitzjs/ide-core/extensions/codeblitz.markdown-language-features-worker';
+import typescript from '@codeblitzjs/ide-core/extensions/codeblitz.typescript-language-features-worker';
+import gitlens from '@codeblitzjs/ide-core/extensions/codeblitz.gitlens';
+import graph from '@codeblitzjs/ide-core/extensions/codeblitz.git-graph';
+import imagePreview from '@codeblitzjs/ide-core/extensions/codeblitz.image-preview';
+import webSCM from '@codeblitzjs/ide-core/extensions/codeblitz.web-scm';
+import anycode from '@codeblitzjs/ide-core/extensions/codeblitz.anycode';
+import anycodeCSharp from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-c-sharp';
+import anycodeCpp from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-cpp';
+import anycodeGo from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-go';
+import anycodeJava from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-java';
+import anycodePhp from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-php';
+import anycodePython from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-python';
+import anycodeRust from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-rust';
+import anycodeTypescript from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-typescript';
+import referencesView from '@codeblitzjs/ide-core/extensions/codeblitz.references-view';
+import emmet from '@codeblitzjs/ide-core/extensions/codeblitz.emmet';
+import codeswing from '@codeblitzjs/ide-core/extensions/codeblitz.codeswing';
+import codeRunner from '@codeblitzjs/ide-core/extensions/codeblitz.code-runner-for-web';
+import mergeConflict from '@codeblitzjs/ide-core/extensions/codeblitz.merge-conflict';
 
 // import * as SCMPlugin from './web-scm.plugin';
 import { WorkbenchEditorService } from '@opensumi/ide-editor';
@@ -52,10 +52,9 @@ isFilesystemReady().then(() => {
 });
 
 const platformConfig = {
-  codeup: {
-    owner: 'test',
-    name: 'qingyou_test',
-    projectId: '3694747',
+  github: {
+    owner: 'opensumi',
+    name: 'codeblitz'
   }
 };
 
@@ -84,7 +83,6 @@ const extensionMetadata = [
   json,
   markdown,
   typescript,
-  codeservice,
   gitlens,
   graph,
   imagePreview,
@@ -120,20 +118,7 @@ const App = () => (
           refPath: config.refPath,
           commit: config.commit,
           hash: location.hash,
-          // codeup
-          projectId: config.projectId,
-          antcode: {
-            endpoint: '/code-service',
-            isInMemory: true,
-            // for test environment
-            // endpoint: '/code-test',
-            // origin: 'http://code.test.alipay.net:9009/code-test'
-          },
           gitlink: {
-            endpoint: '/code-service',
-            // origin: 'https://testforgeplus.trustie.net'
-          },
-          codeup: {
             endpoint: '/code-service',
           }
         }),
@@ -148,20 +133,8 @@ const App = () => (
       },
     }}
     runtimeConfig={{
-      biz: 'alex_demo',
       scmFileTree: true,
-      scenario: 'ALEX_DEMO',
-      // unregisterActivityBarExtra: true,
-      // hideLeftTabBar: true
-      // workspace: {
-      //   filesystem: {
-      //     fs: 'IndexedDB',
-      //     options: {
-      //       storeName: 'ALEX_HOME'
-      //       // cacheSize?: number;
-      //     }
-      //   }
-      // }
+      scenario: 'CODEBLITZ_DEMO'
     }}
   />
 );

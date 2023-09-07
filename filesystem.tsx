@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 
-import { AppRenderer, BrowserFSFileType as FileType, IAppRendererProps, Uri , requireModule} from '@alipay/alex/bundle';
-import '@alipay/alex/bundle/alex.css';
-import '@alipay/alex/languages';
+import { AppRenderer, BrowserFSFileType as FileType, IAppRendererProps, Uri , requireModule} from '@codeblitzjs/ide-core';
+import '@codeblitzjs/ide-core/bundle/codeblitz.css';
+import '@codeblitzjs/ide-core/languages';
 import Select from 'antd/lib/select';
 import 'antd/lib/select/style/index.css';
 
@@ -171,7 +171,6 @@ const App = () => {
             },
           }}
           runtimeConfig={{
-            biz: 'filesystem',
             workspace,
           }}
         />
