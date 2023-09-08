@@ -33,7 +33,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "@codeblitzjs/ide-core": "1.0.3-next.4",
+    "@codeblitzjs/ide-core": "1.0.3-next.5",
     "ahooks": "2",
     "antd": "^3.20.3",
     "file-saver": "^2.0.5",

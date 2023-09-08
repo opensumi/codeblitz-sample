@@ -89,12 +89,12 @@
     async "~2.6.1"
     pako "~1.0.6"
 
-"@codeblitzjs/ide-cli@1.0.3-next.4":
-  version "1.0.3-next.4"
-  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-cli/-/ide-cli-1.0.3-next.4.tgz#2fb892e3d0cb7709421ddfd71bf8b2e251c7ea77"
-  integrity sha512-a2Dlxu5IAhhLFwrFWbbZFWVoWZwWCr5FL0T7YRZc46kuApdyXxo3pMgedj9XshoIlojI24qOOzvvuCwCWjRyQQ==
+"@codeblitzjs/ide-cli@1.0.3-next.5":
+  version "1.0.3-next.5"
+  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-cli/-/ide-cli-1.0.3-next.5.tgz#963e302375c7c880df552f15666f004ebaab49a9"
+  integrity sha512-Cux/xAIaL9OSL//O89K7pmVqzL7Vak8yRU7bANncGBe5DtgeNQTgGs3goAyRd12Ulb1WvKmGbc+8Zulw5bTrXA==
   dependencies:
-    "@codeblitzjs/ide-common" "1.0.3-next.4"
+    "@codeblitzjs/ide-common" "1.0.3-next.5"
     "@opensumi/ide-extension" "2.23.0"
     commander "^7.2.0"
     fs-extra "^9.0.1"
@@ -109,43 +109,43 @@
     urllib "^2.36.1"
     yauzl "^2.10.0"
 
-"@codeblitzjs/ide-code-api@1.0.3-next.4":
-  version "1.0.3-next.4"
-  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-code-api/-/ide-code-api-1.0.3-next.4.tgz#d4f922f1ecd6ba99cf3a91f0aff622e5c4709a7d"
-  integrity sha512-7YK+2c6M900vTivzg3AJP87H1xYRaRG2Vyu4GFQxoVukP9p5eBg2eNDgJmO2AguVP0UeGlHF6hrIqAFzV59nKA==
+"@codeblitzjs/ide-code-api@1.0.3-next.5":
+  version "1.0.3-next.5"
+  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-code-api/-/ide-code-api-1.0.3-next.5.tgz#6811c061aa9eb89ad6fceea38e350334af2a238d"
+  integrity sha512-bS/QXerSVjp8x+OveQuUGGtZs+Gy8rx8osoS0R+Y2eGb9gMJ8r3BjtxHMAMZM7tT4Y35ZKd9Cj7fELTrOWSaCQ==
   dependencies:
-    "@codeblitzjs/ide-common" "1.0.3-next.4"
-    "@codeblitzjs/ide-sumi-core" "1.0.3-next.4"
+    "@codeblitzjs/ide-common" "1.0.3-next.5"
+    "@codeblitzjs/ide-sumi-core" "1.0.3-next.5"
     tslib "^2.2.0"
 
-"@codeblitzjs/ide-code-service@1.0.3-next.4":
-  version "1.0.3-next.4"
-  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-code-service/-/ide-code-service-1.0.3-next.4.tgz#61452c3b00d47e4a25bfb98f8dd7065789b1e7cc"
-  integrity sha512-lWOl4YGZ/ctqSi+13oVe49nzX5AcM3vf+VtwzWuTVnqXBkAiQqYHZibtWq/JUwomXMa6gJvG6mBu3x1Q+7Zd3g==
+"@codeblitzjs/ide-code-service@1.0.3-next.5":
+  version "1.0.3-next.5"
+  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-code-service/-/ide-code-service-1.0.3-next.5.tgz#6275997063e545b0b13e6e357a4cae8c4e1d2847"
+  integrity sha512-E5D5tTjtvcUu5G80Y0NwKLkNGiyuj71MJE87TQdDnaGnz+G+inINcPSbmMyX0Dt98QDe/MLPWk48swt1HTls6g==
   dependencies:
-    "@codeblitzjs/ide-code-api" "1.0.3-next.4"
-    "@codeblitzjs/ide-sumi-core" "1.0.3-next.4"
+    "@codeblitzjs/ide-code-api" "1.0.3-next.5"
+    "@codeblitzjs/ide-sumi-core" "1.0.3-next.5"
     tslib "^2.2.0"
     umi-request "^1.3.5"
 
-"@codeblitzjs/ide-common@1.0.3-next.4":
-  version "1.0.3-next.4"
-  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-common/-/ide-common-1.0.3-next.4.tgz#20614d479299dc107ad71a544362ec2bdf0f66af"
-  integrity sha512-OjCGeaK46I4Kln/9FV2O9VwTlbfMbMKtP0dlfLZSMxH//PxWrVZAHr1uqjxerjZwSF5kB46NX/EB2ANjI0+b2A==
+"@codeblitzjs/ide-common@1.0.3-next.5":
+  version "1.0.3-next.5"
+  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-common/-/ide-common-1.0.3-next.5.tgz#77a106d84693936b1b22ad0f5260891439966153"
+  integrity sha512-N9dAj1sfrYhscmoIES6NXDbDBGA1/At5GUqRmfSVnmIc6UkqbNXTKj6aAgn48edGVhxSDwJOEVd2vuiL7YhXkw==
 
-"@codeblitzjs/ide-core@1.0.3-next.4":
-  version "1.0.3-next.4"
-  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-core/-/ide-core-1.0.3-next.4.tgz#f1e4d3d3a3873bf33ce24c512994d8a84bf62af0"
-  integrity sha512-bN8nNlGyssBD1u9saCCZDXrqdcpm3dPqpguuG+jY3VrO6CLcI4RuOBJtiQxWdWo21uY3eFm8psjOqiIki6f2YA==
+"@codeblitzjs/ide-core@1.0.3-next.5":
+  version "1.0.3-next.5"
+  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-core/-/ide-core-1.0.3-next.5.tgz#ebbd0d96e29e3ad5651c34b0e31c53d6af380219"
+  integrity sha512-HcujVjF11rBanNC92umXklZdsXBefGWYib5zJvF/EtDeBsM1N7UyfFfPmICEUlwgKfG27SepzM0eJyw3UUjYuQ==
   dependencies:
-    "@codeblitzjs/ide-cli" "1.0.3-next.4"
-    "@codeblitzjs/ide-code-api" "1.0.3-next.4"
-    "@codeblitzjs/ide-code-service" "1.0.3-next.4"
-    "@codeblitzjs/ide-common" "1.0.3-next.4"
-    "@codeblitzjs/ide-i18n" "1.0.3-next.4"
-    "@codeblitzjs/ide-plugin" "1.0.3-next.4"
-    "@codeblitzjs/ide-registry" "1.0.3-next.4"
-    "@codeblitzjs/ide-sumi-core" "1.0.3-next.4"
+    "@codeblitzjs/ide-cli" "1.0.3-next.5"
+    "@codeblitzjs/ide-code-api" "1.0.3-next.5"
+    "@codeblitzjs/ide-code-service" "1.0.3-next.5"
+    "@codeblitzjs/ide-common" "1.0.3-next.5"
+    "@codeblitzjs/ide-i18n" "1.0.3-next.5"
+    "@codeblitzjs/ide-plugin" "1.0.3-next.5"
+    "@codeblitzjs/ide-registry" "1.0.3-next.5"
+    "@codeblitzjs/ide-sumi-core" "1.0.3-next.5"
     "@opensumi/ide-addons" "2.23.0"
     "@opensumi/ide-comments" "2.23.0"
     "@opensumi/ide-core-browser" "2.23.0"
@@ -190,37 +190,37 @@
     "@opensumi/textmate-languages" "^2.7.0"
     tslib "^2.2.0"
 
-"@codeblitzjs/ide-i18n@1.0.3-next.4":
-  version "1.0.3-next.4"
-  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-i18n/-/ide-i18n-1.0.3-next.4.tgz#e80376631b4a3fa5cd30019df6dd6fb79cae9f0d"
-  integrity sha512-d5SAR52OdZltXRWamBHFZNpdcSgvFbpYDHXUxYH4BFq0r3N09I5s4rAdr0by6khpoON9ljC/KjmGmNKxEFuHHg==
+"@codeblitzjs/ide-i18n@1.0.3-next.5":
+  version "1.0.3-next.5"
+  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-i18n/-/ide-i18n-1.0.3-next.5.tgz#468879bf2f8f9daeaaa1c5cfbdbf57f5b19e78c7"
+  integrity sha512-sJGnlPKTq7i/qJ0Fo+Fn51IP6Bnrps9Z9NbsK/N92IeIIhW/AJI0Ey90vURIS/MOQEnlk7q4fGOZFHimADCcFQ==
   dependencies:
-    "@codeblitzjs/ide-common" "1.0.3-next.4"
-    "@codeblitzjs/ide-sumi-core" "1.0.3-next.4"
+    "@codeblitzjs/ide-common" "1.0.3-next.5"
+    "@codeblitzjs/ide-sumi-core" "1.0.3-next.5"
     tslib "^2.2.0"
 
-"@codeblitzjs/ide-plugin@1.0.3-next.4":
-  version "1.0.3-next.4"
-  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-plugin/-/ide-plugin-1.0.3-next.4.tgz#02f6676248d75fcdf8e1dcb2f265bd68a5686a26"
-  integrity sha512-rjah4f2vdRSPVpZ9tToRFw64mPcEWpo5xZYe9/4Df9y4fhztgn0JqX0cioSf9V2tSM3dvGy1BgEivRC0n9BmHQ==
+"@codeblitzjs/ide-plugin@1.0.3-next.5":
+  version "1.0.3-next.5"
+  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-plugin/-/ide-plugin-1.0.3-next.5.tgz#c8fe88cffdc5533b8ab04ec8d5934b0e639c9716"
+  integrity sha512-Zua8s6LGYdmukIJd5VSJ1eq5Nc4uTpy/g1VKYa4u8P03gxB1g5XrCiwPqJs8AiAVH7TZ1FM4Gw1tpMampaIjBA==
   dependencies:
-    "@codeblitzjs/ide-common" "1.0.3-next.4"
-    "@codeblitzjs/ide-sumi-core" "1.0.3-next.4"
+    "@codeblitzjs/ide-common" "1.0.3-next.5"
+    "@codeblitzjs/ide-sumi-core" "1.0.3-next.5"
     tslib "^2.2.0"
 
-"@codeblitzjs/ide-registry@1.0.3-next.4":
-  version "1.0.3-next.4"
-  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-registry/-/ide-registry-1.0.3-next.4.tgz#5d7c4f699911ff256a9dc08cb6a304286b26a9ff"
-  integrity sha512-a5LBNMRdFxgj6cjgBOytAS+p7l1izJJCamGZlXC8jjI/UhVrsetoRkYMuo7SmkircJQ9I6GkcJApMWI+xt9g2A==
+"@codeblitzjs/ide-registry@1.0.3-next.5":
+  version "1.0.3-next.5"
+  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-registry/-/ide-registry-1.0.3-next.5.tgz#33f7bdfd02e16f1a2d0f7a3be285e67cd4d423a1"
+  integrity sha512-1mxSCxV3FUyNN9LZo8PpuxFLICcj5GYcP3Va8zUkxjhkETscipBE2OOC4WXoVp5DIHJeZkb17qOGNYv2eoqEaA==
 
-"@codeblitzjs/ide-sumi-core@1.0.3-next.4":
-  version "1.0.3-next.4"
-  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-sumi-core/-/ide-sumi-core-1.0.3-next.4.tgz#0b715e96d9a85c20e59f125950953e7a8b46af3e"
-  integrity sha512-WRUQQ0KqLG7RGzcrFax4tj69DToYFnj/FhkurvvpkzEUMEGbCCEOCgP7rIokOMLBRPImxtWDPVf/y2PaZQlFDw==
+"@codeblitzjs/ide-sumi-core@1.0.3-next.5":
+  version "1.0.3-next.5"
+  resolved "https://registry.yarnpkg.com/@codeblitzjs/ide-sumi-core/-/ide-sumi-core-1.0.3-next.5.tgz#621f491172f3da29c41cfd80ccddb8a15254be7b"
+  integrity sha512-Ospi3X6TB7AM2CY9oRIoMQG007Ec7ga4TtFfpe9Gl8pSlNmEsj3BgciXSX46w2nxw0rxm9++9igBMgtwp8g/6Q==
   dependencies:
     "@codeblitzjs/ide-browserfs" "1.0.0"
-    "@codeblitzjs/ide-common" "1.0.3-next.4"
-    "@codeblitzjs/ide-registry" "1.0.3-next.4"
+    "@codeblitzjs/ide-common" "1.0.3-next.5"
+    "@codeblitzjs/ide-registry" "1.0.3-next.5"
     "@opensumi/di" "^1.0.0"
     "@opensumi/ide-core-browser" "2.23.0"
     "@opensumi/ide-core-common" "2.23.0"
