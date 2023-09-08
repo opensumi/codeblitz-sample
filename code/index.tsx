@@ -1,5 +1,3 @@
-// codeup 代码服务接入示例
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { IAppInstance, AppRenderer, getDefaultLayoutConfig, SlotLocation, AppRenderer2 } from '@codeblitzjs/ide-core';
@@ -66,7 +64,7 @@ layoutConfig[SlotLocation.left].modules.push(
 
 let pathParts = location.pathname.split('/').filter(Boolean);
 
-const platform: any = pathParts[0] in platformConfig ? pathParts[0] : 'codeup';
+const platform: any = pathParts[0] in platformConfig ? pathParts[0] : 'github';
 
 const config = platformConfig[platform];
 if (pathParts[1]) {
@@ -86,7 +84,7 @@ const extensionMetadata = [
   gitlens,
   graph,
   imagePreview,
-  // webSCM,
+  webSCM,
   referencesView,
   codeswing,
   emmet,
@@ -100,6 +98,7 @@ const extensionMetadata = [
   anycodeTypescript,
   anycode,
   codeRunner,
+  mergeConflict
 ]
 
 

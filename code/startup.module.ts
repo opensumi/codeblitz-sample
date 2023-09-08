@@ -23,29 +23,7 @@ export class AlexAppContribution extends Disposable implements CommandContributi
   private ignoreHash: string | null = null;
 
   registerCommands(commands: CommandRegistry): void {
-    // 保持和 api-server 一致
     this.addDispose([
-      // codeswing 依赖
-      // FIXME: 框架侧支持
-      // ...[
-      //   'vscode.setEditorLayout',
-      // ].map((id) => commands.registerCommand({ id }, { execute: () => {} })),
-      commands.registerCommand(
-        { id: 'cloudide.command.workspace.getRuntimeConfig' },
-        {
-          execute: (property: string) => {
-            let val: string | undefined;
-            try {
-              const query = { taskId: '14417925' };
-              val = property ? query[property] : query;
-            } catch (e) {
-              return property ? undefined : {};
-            }
-            return val;
-          },
-        }
-      ),
-
       commands.registerCommand(
         { id: 'alex.env.language' },
         {

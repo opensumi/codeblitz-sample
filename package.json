@@ -11,7 +11,8 @@
     "editor": "webpack serve --config webpack.config.js --env entry=editor",
     "search": "webpack serve --config webpack.config.js --env entry=search",
     "zip": "webpack serve --config webpack.config.js --env entry=zip",
-    "collaboration": "node ./collaboration/server & webpack serve --config webpack.config.js --env entry=collaboration"
+    "collaboration": "node ./collaboration/server & webpack serve --config webpack.config.js --env entry=collaboration",
+    "conflicts": "webpack serve --config webpack.config.js --env entry=merge-editor"
   },
   "author": "",
   "license": "ISC",
@@ -34,7 +35,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "@codeblitzjs/ide-core": "1.0.3-next.5",
+    "@codeblitzjs/ide-core": "1.0.4",
     "ahooks": "2",
     "antd": "^3.20.3",
     "file-saver": "^2.0.5",
