@@ -1,4 +1,4 @@
-import { ToolBarRightBtn, FullScreenBtn, click } from '../components/zipButton';
+import { FullScreenBtn, click } from '../components/zipButton';
 import { requireModule } from "@codeblitzjs/ide-core/bundle";
 const FileService = requireModule("@opensumi/ide-file-service");
 const CommpnDI = requireModule("@opensumi/di");
