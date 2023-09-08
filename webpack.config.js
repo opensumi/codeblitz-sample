@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 require("dotenv").config({ path: path.join(__dirname, "./.env") });
 const styleLoader = require.resolve("style-loader");
+const webpack = require('webpack');
 
 module.exports = (env) => ({
   entry: path.join(__dirname, env.entry || "startup"),
@@ -151,6 +152,11 @@ module.exports = (env) => ({
     new HtmlWebpackPlugin({
       filename: `index.html`,
       template: path.join(__dirname, "./index.html"),
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        HOST: JSON.stringify(process.env.HOST || ''),
+      },
     }),
   ],
   devServer: {

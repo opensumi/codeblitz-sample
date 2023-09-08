@@ -10,7 +10,8 @@
     "fs": "webpack serve --config webpack.config.js --env entry=filesystem",
     "editor": "webpack serve --config webpack.config.js --env entry=editor",
     "search": "webpack serve --config webpack.config.js --env entry=search",
-    "zip": "webpack serve --config webpack.config.js --env entry=zip"
+    "zip": "webpack serve --config webpack.config.js --env entry=zip",
+    "collaboration": "node ./collaboration/server & webpack serve --config webpack.config.js --env entry=collaboration"
   },
   "author": "",
   "license": "ISC",
@@ -40,9 +41,12 @@
     "jszip": "^3.10.1",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
+    "ot": "^0.0.15",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "sha1": "^1.1.1"
+    "sha1": "^1.1.1",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2"
   },
   "resolutions": {
     "@rjsf/core": "5.5.2"

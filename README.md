@@ -16,4 +16,7 @@ npm run code
 
 # 查看 基础editor 示例
 npm run editor
+
+# 查看协同编辑示例
+npm run collaboration
 ```
