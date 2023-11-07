@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "module": "ES2015",
+    "target": "ES2015",
+    "moduleResolution": "node",
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true,
+    "noEmitOnError": false,
+    "noImplicitAny": false,
+    "skipLibCheck": false,
+    "strictFunctionTypes": false,
+    "jsx": "react",
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "lib",
+    "noUnusedLocals": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    "allowJs": true,
+    "lib": [
+      "DOM",
+      "ES2015"
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+      "./node_modules/@ali/kaitian"
+    ],
+    "paths": {
+      "vscode": [
+        "./node_modules/@opensumi/sumi"
+      ],
+    }
+  }
+}
