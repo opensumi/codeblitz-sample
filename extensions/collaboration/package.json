@@ -4,7 +4,7 @@
   "description": "extension for collaboration",
   "publisher": "codeblitz",
   "engines": {
-    "sumi": "*"
+    "opensumi": "*"
   },
   "activationEvents": [
     "*"

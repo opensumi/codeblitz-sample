@@ -11,4 +11,6 @@
 
 npm run dev
 
+# package  npm i -g @opensumi/sumi 
+sumi package
 ```
