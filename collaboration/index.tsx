@@ -16,7 +16,7 @@ import '@codeblitzjs/ide-core/languages/python';
 import css from '@codeblitzjs/ide-core/extensions/codeblitz.css-language-features-worker';
 import html from '@codeblitzjs/ide-core/extensions/codeblitz.html-language-features-worker';
 import typescript from '@codeblitzjs/ide-core/extensions/codeblitz.typescript-language-features-worker';
-import collaboration from './extension';
+import collaboration from '@codeblitzjs/ide-core/extensions/codeblitz.collaboration';
 import * as plugin from './plugin';
 
 import Modal from 'antd/lib/modal'
