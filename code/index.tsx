@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { IAppInstance, AppRenderer, getDefaultLayoutConfig, SlotLocation, AppRenderer2 } from '@codeblitzjs/ide-core';
+import { IAppInstance, AppRenderer, getDefaultLayoutConfig, SlotLocation } from '@codeblitzjs/ide-core';
 import '@codeblitzjs/ide-core/languages';
 import { CodeServiceModule } from '@codeblitzjs/ide-code-service';
 import { CodeAPIModule, CodePlatform } from '@codeblitzjs/ide-code-api';
@@ -17,23 +17,22 @@ import gitlens from '@codeblitzjs/ide-core/extensions/codeblitz.gitlens';
 import graph from '@codeblitzjs/ide-core/extensions/codeblitz.git-graph';
 import imagePreview from '@codeblitzjs/ide-core/extensions/codeblitz.image-preview';
 import webSCM from '@codeblitzjs/ide-core/extensions/codeblitz.web-scm';
-import anycode from '@codeblitzjs/ide-core/extensions/codeblitz.anycode';
-import anycodeCSharp from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-c-sharp';
-import anycodeCpp from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-cpp';
-import anycodeGo from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-go';
-import anycodeJava from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-java';
-import anycodePhp from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-php';
-import anycodePython from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-python';
-import anycodeRust from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-rust';
-import anycodeTypescript from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-typescript';
+// import anycode from '@codeblitzjs/ide-core/extensions/codeblitz.anycode';
+// import anycodeCSharp from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-c-sharp';
+// import anycodeCpp from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-cpp';
+// import anycodeGo from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-go';
+// import anycodeJava from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-java';
+// import anycodePhp from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-php';
+// import anycodePython from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-python';
+// import anycodeRust from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-rust';
+// import anycodeTypescript from '@codeblitzjs/ide-core/extensions/codeblitz.anycode-typescript';
 import referencesView from '@codeblitzjs/ide-core/extensions/codeblitz.references-view';
 import emmet from '@codeblitzjs/ide-core/extensions/codeblitz.emmet';
 import codeswing from '@codeblitzjs/ide-core/extensions/codeblitz.codeswing';
 import codeRunner from '@codeblitzjs/ide-core/extensions/codeblitz.code-runner-for-web';
 import mergeConflict from '@codeblitzjs/ide-core/extensions/codeblitz.merge-conflict';
 
-// import * as SCMPlugin from './web-scm.plugin';
-import { WorkbenchEditorService } from '@opensumi/ide-editor';
+import * as SCMPlugin from './web-scm.plugin';
 
 
 /*  TODO
@@ -52,8 +51,30 @@ isFilesystemReady().then(() => {
 const platformConfig = {
   github: {
     owner: 'opensumi',
-    name: 'codeblitz'
-  }
+    name: 'codeblitz',
+  },
+  // for your own project
+  gitlab: {
+    owner: 'opensumi',
+    name: 'codeblitz',
+  },
+  gitlink: {
+    owner: 'opensumi',
+    name: 'core',
+  },
+  atomgit: {
+    owner: 'opensumi',
+    name: 'codeblitz',
+  },
+  codeup: {
+    owner: '',
+    name: '',
+    projectId: '',
+  }, 
+  gitee: {
+    owner: 'opensumi',
+    name: 'codeblitz',
+  },
 };
 
 const layoutConfig = getDefaultLayoutConfig();
@@ -88,15 +109,15 @@ const extensionMetadata = [
   referencesView,
   codeswing,
   emmet,
-  anycodeCSharp,
-  anycodeCpp,
-  anycodeGo,
-  anycodeJava,
-  anycodePhp,
-  anycodePython,
-  anycodeRust,
-  anycodeTypescript,
-  anycode,
+  // anycodeCSharp,
+  // anycodeCpp,
+  // anycodeGo,
+  // anycodeJava,
+  // anycodePhp,
+  // anycodePython,
+  // anycodeRust,
+  // anycodeTypescript,
+  // anycode,
   codeRunner,
   mergeConflict
 ]
@@ -108,7 +129,7 @@ const App = () => (
       window.app = app;
     }}
     appConfig={{
-      // plugins: [Plugin, SCMPlugin],
+      plugins: [SCMPlugin],
       modules: [
         CodeServiceModule.Config({
           platform,
@@ -117,9 +138,24 @@ const App = () => (
           refPath: config.refPath,
           commit: config.commit,
           hash: location.hash,
+          projectId: config.projectId,
           gitlink: {
+            // for proxy
             endpoint: '/code-service',
-          }
+          },
+          atomgit: {
+            // atomgit token https://atomgit.com/-/profile/tokens
+            token: ''
+          },
+          gitee: {
+            // gitee token https://gitee.com/profile/personal_access_tokens
+            recursive: true,
+            token: ''
+          },
+          codeup: {
+            // for proxy
+            endpoint: '/code-service',
+          },
         }),
         CodeAPIModule,
         StartupModule,

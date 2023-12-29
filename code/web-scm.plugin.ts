@@ -69,6 +69,16 @@ export const activate = ({ commands }: IPluginAPI) => {
     return files;
   });
 
+  commands.registerCommand('web-scm.log', () => {
+    // noop
+  });
+
+  // TODO 待 OpenSumi内增加 getEncoding api
+  // https://github.com/opensumi/core/issues/3104
+  commands.registerCommand('code-service.getEncoding', (uri: Uri) => {
+    return 'utf8'
+  });
+
   commands.registerCommand('web-scm.windowOpen', async (path) => {
     if (!path) {
       window.location = window.location;
@@ -77,30 +87,9 @@ export const activate = ({ commands }: IPluginAPI) => {
     }
   });
 
-  /*
-      21 修改次数
-      22 新增文件
-      23 删除文件
-      24 提交次数
-   */
-  commands.registerCommand('web-scm.yuyanlog', (code, msg, extra) => {
-    // 埋点数据
-    console.log(' >>> log', code, msg, extra);
-  });
-
-  commands.registerCommand('alex.gty.workerReady', () => {
-    return workerReady.resolve();
-  });
-
   commands.registerCommand('code-service.conflictConfig', () => {
-    // 测试解决冲突内容
     return {
       isMergeConflicts: false,
-      sourceBranch: 'merge4',
-      targetBranch: 'merge1',
-      prId: '146206608',
-      hasTag: false,
-      from: 0,
     };
   });
 };
