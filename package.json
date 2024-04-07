@@ -51,5 +51,6 @@
   },
   "resolutions": {
     "@rjsf/core": "5.5.2"
-  }
+  },
+  "repository": "git@github.com:opensumi/codeblitz-sample.git"
 }
