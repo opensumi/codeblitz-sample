@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { AppRenderer, BrowserFSFileType as FileType } from '@codeblitzjs/ide-core'
+import { AppRenderer, BrowserFSFileType as FileType, IAppInstance } from '@codeblitzjs/ide-core'
+import { IEventBus, BrowserModule, Domain, ClientAppContribution, Disposable } from '@opensumi/ide-core-browser';
+import { EditorDocumentModelWillSaveEvent, IEditorDocumentModelService } from '@opensumi/ide-editor/lib/browser';
+
 import '@codeblitzjs/ide-core/bundle/codeblitz.css';
 import '@codeblitzjs/ide-core/languages'
 import WorkerExample from './extensions/worker-example/worker-example'
+import { Autowired, Injectable } from '@opensumi/di';
 
 const dirMap: Record<string, [string, FileType][]> = {
   '/': [
@@ -51,7 +55,7 @@ func main() {
   fmt.Println("Hello, World!")
 }
 `.trimStart(),
-'/appveyor.yml':`# version format
+  '/appveyor.yml': `# version format
 version: 1.0.{build}
 
 # you can use {branch} name in version format too
@@ -75,6 +79,36 @@ skip_tags: true
 skip_non_tags: true`.trimStart()
 }
 
+
+@Domain(ClientAppContribution)
+class DocumentSaverContribution extends Disposable implements ClientAppContribution {
+  @Autowired(IEventBus)
+  eventBus: IEventBus;
+
+  @Autowired(IEditorDocumentModelService)
+  documentService: IEditorDocumentModelService;
+
+  onDidStart() {
+    this.addDispose(
+      this.eventBus.on(EditorDocumentModelWillSaveEvent, (event) => {
+        console.log("Document will save", event.payload);
+        const docModel = this.documentService.getModelReference(event.payload.uri);
+        if (!docModel) return;
+
+        const fullText = docModel.instance.getText();
+        // now we can do something with the text
+        console.log('First five characters of the document are: ', fullText.substr(0, 5));
+      })
+    )
+  }
+}
+
+
+@Injectable()
+class CustomModule extends BrowserModule {
+  providers = [DocumentSaverContribution];
+}
+
 const App = () => {
   return (
     <AppRenderer
@@ -82,7 +116,8 @@ const App = () => {
         // 工作空间目录
         workspaceDir: 'codeblitz-startup',
         // modules:[unregisterKeybindingModule],
-        extensionMetadata:[WorkerExample],
+        extensionMetadata: [WorkerExample],
+        modules: [CustomModule]
       }}
       runtimeConfig={{
         workspace: {
@@ -103,7 +138,7 @@ const App = () => {
           filesystem: {
             fs: 'OverlayFS',
             options: {
-              writable: {fs: 'IndexedDB'},
+              writable: { fs: 'IndexedDB' },
               readable: {
                 fs: 'DynamicRequest',
                 options: {
