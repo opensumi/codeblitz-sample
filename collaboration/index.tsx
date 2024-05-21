@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import { AppRenderer, SlotLocation, BoxPanel, SlotRenderer, IAppInstance } from '@codeblitzjs/ide-core';
+import { IEditorDocumentModelService } from '@codeblitzjs/ide-core/lib/modules/opensumi__ide-editor';
+
 import '@codeblitzjs/ide-core/languages/cpp';
 import '@codeblitzjs/ide-core/languages/java';
 import '@codeblitzjs/ide-core/languages/javascript';
@@ -24,7 +26,6 @@ import 'antd/lib/modal/style'
 import Input from 'antd/lib/input'
 import 'antd/lib/input/style'
 import Button from 'antd/lib/button'
-import { IEditorDocumentModelService } from '@codeblitzjs/ide-core/lib/modules/opensumi__ide-editor';
 
 export const layoutConfig = {
   [SlotLocation.main]: {
@@ -91,7 +92,7 @@ const App = () => {
       ],
       () => null
     );
-  }, []);
+  }, [value]);
   return (
     <div style={{ width: '50%', margin: 'auto', height: 700, position: 'relative' }}>
       <Modal
