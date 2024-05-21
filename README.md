@@ -20,7 +20,7 @@ npm run editor
 # 查看协同编辑示例
 npx codeblitz ext link ./extensions/collaboration  # 插件本地联调
 
-cd extensions/collaboration && npm run dev  # 插件编译
+cd extensions/collaboration && yarn install && yarn run dev  # 插件编译
 
 npm run collaboration
 ```
