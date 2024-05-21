@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
-import { AppRenderer, SlotLocation, BoxPanel, SlotRenderer } from '@codeblitzjs/ide-core';
+import { AppRenderer, SlotLocation, BoxPanel, SlotRenderer, IAppInstance } from '@codeblitzjs/ide-core';
 import '@codeblitzjs/ide-core/languages/cpp';
 import '@codeblitzjs/ide-core/languages/java';
 import '@codeblitzjs/ide-core/languages/javascript';
@@ -24,6 +24,7 @@ import 'antd/lib/modal/style'
 import Input from 'antd/lib/input'
 import 'antd/lib/input/style'
 import Button from 'antd/lib/button'
+import { IEditorDocumentModelService } from '@codeblitzjs/ide-core/lib/modules/opensumi__ide-editor';
 
 export const layoutConfig = {
   [SlotLocation.main]: {
@@ -41,6 +42,7 @@ const App = () => {
   const [open, setOpen] = useState(false)
   const [ready, setReady] = useState(false)
   const [value, setValue] = useState('')
+  const app = React.useRef<IAppInstance | null>(null);
 
   const handleOk = () => {
     const name = value.trim()
@@ -61,7 +63,35 @@ const App = () => {
       setOpen(true)
     }
   }, [])
+  const handleClick = React.useCallback(() => {
+    if (!app.current) {
+      return;
+    }
 
+    const docModelService: IEditorDocumentModelService =
+      app.current.injector.get(IEditorDocumentModelService);
+
+    const modelList = docModelService.getAllModels();
+
+    console.log('modelList', modelList);
+    const model0 = modelList[0];
+
+    model0.getMonacoModel().pushEditOperations(
+      null,
+      [
+        {
+          range: {
+            startLineNumber: 1,
+            startColumn: 1,
+            endLineNumber: 1,
+            endColumn: 1,
+          },
+          text: `${value}: Hello World!\n`,
+        },
+      ],
+      () => null
+    );
+  }, []);
   return (
     <div style={{ width: '50%', margin: 'auto', height: 700, position: 'relative' }}>
       <Modal
@@ -75,8 +105,12 @@ const App = () => {
       >
         <Input autoFocus value={value} onChange={e => setValue(e.target.value)} onPressEnter={handleOk} />
       </Modal>
+      {ready && <Button onClick={handleClick}>添加内容</Button>}
       {ready && (
         <AppRenderer
+          onLoad={_app => {
+            app.current = _app;
+          }}
           appConfig={{
             plugins: [plugin],
             workspaceDir: 'live',
