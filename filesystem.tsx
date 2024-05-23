@@ -6,6 +6,10 @@ import '@codeblitzjs/ide-core/bundle/codeblitz.css';
 import '@codeblitzjs/ide-core/languages';
 import Select from 'antd/lib/select';
 import 'antd/lib/select/style/index.css';
+import { Button } from 'antd';
+import type { IFileServiceClient as TFileServiceClient } from '@opensumi/ide-file-service/lib/common';
+
+const path = requireModule('path');
 
 const dirMap: Record<string, [string, FileType][]> = {
   '/': [
@@ -35,8 +39,10 @@ const zipDataPromise = (async () => {
   zipData = Buffer.from(new Uint8Array(buf));
 })();
 
+const workspaceDir = 'filesystem';
+
 const App = () => {
-  const [fsType, setFsType] = useState<string>('OverlayFS');
+  const [fsType, setFsType] = useState<string>('FileIndexSystem');
 
   const filesystem = useMemo<
     NonNullable<IAppRendererProps['runtimeConfig']['workspace']>['filesystem'] | undefined
@@ -63,7 +69,8 @@ const App = () => {
                 'main.html': '<div id="root"></div>',
                 'main.css': 'body {}',
                 'main.js': 'console.log("main")',
-                'package.json': '{\n  "name": "Riddle"\n}',
+                'package.json': '{\n  "name": "Codeblitz"\n}',
+                'readme.md': '# Codeblitz',
               });
             },
           },
@@ -124,7 +131,7 @@ const App = () => {
   return (
     <div style={{ height: '100%' }}>
       <div style={{ height: 48, display: 'flex', alignItems: 'center' }}>
-        <Select<string> onChange={(e) => setFsType(e)} style={{ width: 200 }}>
+        <Select<string> onChange={(e) => setFsType(e)} style={{ width: 200 }} value={fsType}>
           <Select.Option value="IndexedDB">IndexedDB</Select.Option>
           <Select.Option value="InMemory">InMemory</Select.Option>
           <Select.Option value="FileIndexSystem">FileIndexSystem</Select.Option>
@@ -133,7 +140,29 @@ const App = () => {
           <Select.Option value="FolderAdapter">FolderAdapter</Select.Option>
           <Select.Option value="OverlayFS">OverlayFS</Select.Option>
         </Select>
+
+        {
+          fsType === 'FileIndexSystem' && (
+            <Button onClick={async () => {
+              // All files in codeblitz are mounted to /workspace/${workspaceDir}
+              const targetFile = path.join('/workspace', workspaceDir, 'readme.md');
+              const fileService = window.app.injector.get(IFileServiceClient) as TFileServiceClient;
+              const uri = Uri.file(targetFile).toString();
+              const stat = await fileService.getFileStat(uri);
+              if (stat) {
+                const content = await fileService.readFile(uri);
+                const text = content.content.toString();
+                await fileService.setContent(stat, text +'\n\nThis is a demo file.', {
+                  encoding: 'utf8',
+                });
+              }
+            }}>
+              修改 readme.md
+            </Button>
+          )
+        }
       </div>
+
       <div style={{ height: 'calc(100% - 48px)' }}>
         <AppRenderer
           key={fsType}
@@ -165,7 +194,7 @@ const App = () => {
             });
           }}
           appConfig={{
-            workspaceDir: 'filesystem',
+            workspaceDir,
             defaultPreferences: {
               'general.theme': 'opensumi-light',
             },
