@@ -7,9 +7,9 @@ import '@codeblitzjs/ide-core/languages';
 import Select from 'antd/lib/select';
 import 'antd/lib/select/style/index.css';
 import { Button } from 'antd';
-import type { IFileServiceClient as TFileServiceClient } from '@opensumi/ide-file-service/lib/common';
 
 const path = requireModule('path');
+const fse = requireModule('fs-extra');
 
 const dirMap: Record<string, [string, FileType][]> = {
   '/': [
@@ -146,16 +146,8 @@ const App = () => {
             <Button onClick={async () => {
               // All files in codeblitz are mounted to /workspace/${workspaceDir}
               const targetFile = path.join('/workspace', workspaceDir, 'readme.md');
-              const fileService = window.app.injector.get(IFileServiceClient) as TFileServiceClient;
-              const uri = Uri.file(targetFile).toString();
-              const stat = await fileService.getFileStat(uri);
-              if (stat) {
-                const content = await fileService.readFile(uri);
-                const text = content.content.toString();
-                await fileService.setContent(stat, text +'\n\nThis is a demo file.', {
-                  encoding: 'utf8',
-                });
-              }
+              const content = await fse.readFile(targetFile);
+              await fse.writeFile(targetFile, content.toString() +'\n\nThis is a demo file.', { encoding: 'utf8' });
             }}>
               修改 readme.md
             </Button>
