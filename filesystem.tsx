@@ -143,7 +143,7 @@ const App = () => {
 
         {
           fsType === 'FileIndexSystem' && (
-            <Button onClick={async () => {
+            <>            <Button onClick={async () => {
               // All files in codeblitz are mounted to /workspace/${workspaceDir}
               const targetFile = path.join('/workspace', workspaceDir, 'readme.md');
               const content = await fse.readFile(targetFile);
@@ -151,6 +151,17 @@ const App = () => {
             }}>
               修改 readme.md
             </Button>
+            <Button onClick={async () => {
+              const newFile = path.join('/workspace', workspaceDir, `new-file-${Math.random().toString(16).slice(2)}.md`);
+
+              console.log(`🚀 ~ <ButtononClick={ ~ newFile:`, newFile);
+              await fse.writeFile(newFile, 'This is a new file.', { encoding: 'utf8' });
+            }}>
+            创建随机文件
+
+            </Button>
+            </>
+
           )
         }
       </div>
