@@ -1,6 +1,6 @@
 // 接收zip文件 保存后在输出zip
 import React, { useState, useMemo } from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { AppRenderer } from '@codeblitzjs/ide-core';
 import '@codeblitzjs/ide-core/bundle/codeblitz.css';
 import '@codeblitzjs/ide-core/languages';
@@ -69,7 +69,7 @@ const App = () => {
           appConfig={{
             workspaceDir: 'zip_file_system',
             defaultPreferences: {
-              'general.theme': 'opensumi-light',
+              'general.theme': 'opensumi-design-light-theme',
               'editor.guides.bracketPairs': false,
             },
             layoutConfig: getDefaultLayoutConfig(),
@@ -107,5 +107,5 @@ const App = () => {
 };
 
 zipDataPromise.then(() => {
-  ReactDOM.render(<App />, document.getElementById('main'));
+  ReactDOM.createRoot(document.getElementById('main')!).render(<App />);
 });

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 import { AppRenderer, SlotLocation, BoxPanel, SlotRenderer } from '@codeblitzjs/ide-core';
 import '@codeblitzjs/ide-core/languages/cpp';
@@ -16,7 +16,7 @@ import '@codeblitzjs/ide-core/languages/python';
 import css from '@codeblitzjs/ide-core/extensions/codeblitz.css-language-features-worker';
 import html from '@codeblitzjs/ide-core/extensions/codeblitz.html-language-features-worker';
 import typescript from '@codeblitzjs/ide-core/extensions/codeblitz.typescript-language-features-worker';
-import collaboration from '@codeblitzjs/ide-core/extensions/codeblitz.collaboration';
+// import collaboration from '@codeblitzjs/ide-core/extensions/codeblitz.collaboration';
 import * as plugin from './plugin';
 
 import Modal from 'antd/lib/modal'
@@ -83,7 +83,7 @@ const App = () => {
             layoutConfig,
             layoutComponent: LayoutComponent,
             defaultPreferences: {
-              'general.theme': 'opensumi-dark',
+              'general.theme': 'opensumi-design-dark-theme',
               'general.language': 'zh-CN',
               'editor.fontSize': 14,
               'editor.tabSize': 2,
@@ -94,7 +94,7 @@ const App = () => {
               'alitcode.locale': 'zh-CN',
               'alitcode.debug': true,
             },
-            extensionMetadata: [html, css, typescript, collaboration],
+            extensionMetadata: [html, css, typescript],
           }}
           runtimeConfig={{
             scenario: null,
@@ -118,4 +118,4 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('main'));
+ReactDOM.createRoot(document.getElementById('main')!).render(<App />);

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 import { AppRenderer, BrowserFSFileType as FileType, IAppRendererProps, Uri , requireModule} from '@codeblitzjs/ide-core';
 import '@codeblitzjs/ide-core/bundle/codeblitz.css';
@@ -188,7 +188,7 @@ const App = () => {
           appConfig={{
             workspaceDir,
             defaultPreferences: {
-              'general.theme': 'opensumi-light',
+              'general.theme': 'opensumi-design-light-theme',
             },
           }}
           runtimeConfig={{
@@ -201,5 +201,5 @@ const App = () => {
 };
 
 zipDataPromise.then(() => {
-  ReactDOM.render(<App />, document.getElementById('main'));
+  ReactDOM.createRoot(document.getElementById('main')!).render(<App />);
 });

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 // 如不需要扩展，从 codeblitz.editor 引入
 import { IAppInstance, EditorRenderer } from "@codeblitzjs/ide-core/lib/editor.all";
 import { request } from '@codeblitzjs/ide-common';
@@ -200,8 +200,8 @@ const App = () => {
                 workspaceDir: project,
                 // 默认配置
                 defaultPreferences: {
-                  // 白色主题  opensumi-light opensumi-dark
-                  "general.theme": "opensumi-light",
+                  // 白色主题  opensumi-design-light-theme opensumi-design-dark-theme
+                  'general.theme': 'opensumi-design-light-theme',
                   // 最后一行禁止继续滚动
                   "editor.scrollBeyondLastLine": false,
                   // 只读模式，目前只读和读写无法切换，设置了后不可更改
@@ -270,11 +270,11 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("main"));
+ReactDOM.createRoot(document.getElementById("main")!).render(<App />);
 
 // for test
 window.destroy = () => {
-  ReactDOM.render(<div>destroyed</div>, document.getElementById("main"));
+  ReactDOM.createRoot(document.getElementById("main")!).render(<div>destroyed</div>);
 };
 
 declare global {

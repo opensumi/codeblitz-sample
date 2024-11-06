@@ -1,7 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 require("dotenv").config({ path: path.join(__dirname, "./.env") });
-const styleLoader = require.resolve("style-loader");
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+
 const webpack = require('webpack');
 
 module.exports = (env) => ({
@@ -12,22 +13,21 @@ module.exports = (env) => ({
     publicPath: "/",
   },
   devtool: "inline-source-map",
-  mode: "development",
-  // webpack v4
-  node: {
-    net: "empty",
-    fs: "empty",
-  },
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json", ".less"],
-    // webpack v5
-    // fallback: {
-    //   net: false,
-    //   child_process: false,
-    //   http: false,
-    //   https: false,
-    //   fs: false,
-    // }
+    fallback: {
+      "path": require.resolve("path-browserify"),
+      "fs": false,
+      "crypto": false,
+      "stream": false,
+      "buffer": false,
+      "os": false,
+      "process": false,
+    }
+  },
+  experiments: {
+    asyncWebAssembly: true,
   },
   module: {
     rules: [
@@ -63,7 +63,7 @@ module.exports = (env) => ({
         test: /\.module.less$/,
         use: [
           {
-            loader: styleLoader,
+            loader: "style-loader",
             options: {
               esModule: false,
             },
@@ -76,7 +76,7 @@ module.exports = (env) => ({
               esModule: false,
               modules: {
                 mode: "local",
-                localIdentName: "[local]___[hash:base32:5]",
+                localIdentName: "[local]___[hash:base64:5]",
               },
             },
           },
@@ -94,7 +94,7 @@ module.exports = (env) => ({
         test: /^((?!\.module).)*less$/,
         use: [
           {
-            loader: styleLoader,
+            loader: "style-loader",
             options: {
               esModule: false,
             },
@@ -158,21 +158,27 @@ module.exports = (env) => ({
         HOST: JSON.stringify(process.env.HOST || ''),
       },
     }),
+    new NodePolyfillPlugin({
+      includeAliases: ['process', 'Buffer'],
+    }),
   ],
   devServer: {
-    disableHostCheck: true,
-    staticOptions: {
-      setHeaders: (res) => {
-        res.setHeader("Access-Control-Allow-Origin", "*");
-      },
+    static: {
+      directory: path.join(__dirname, 'assets'),
     },
-    contentBasePublicPath: "/assets/~",
-    contentBase: "/",
-    proxy: { },
+    allowedHosts: "all",
     host: "0.0.0.0",
     port: 8001,
     historyApiFallback: {
       disableDotRule: true,
+    },
+    hot: true,
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+        runtimeErrors: false,
+      },
     },
   },
 });

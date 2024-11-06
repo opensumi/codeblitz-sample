@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { IAppInstance, AppRenderer, getDefaultLayoutConfig, SlotLocation, AppRenderer2 } from '@codeblitzjs/ide-core';
+import ReactDOM from 'react-dom/client';
+import { IAppInstance, AppRenderer, getDefaultLayoutConfig, SlotLocation } from '@codeblitzjs/ide-core';
 import '@codeblitzjs/ide-core/languages';
 import { CodeServiceModule } from '@codeblitzjs/ide-code-service';
 import { CodeAPIModule, CodePlatform } from '@codeblitzjs/ide-code-api';
@@ -128,7 +128,7 @@ const App = () => (
       workspaceDir: `${platform}/${config.owner}/${config.name}`,
       layoutConfig,
       defaultPreferences: {
-        'general.theme': 'opensumi-dark',
+        'general.theme': 'opensumi-design-dark-theme',
       },
     }}
     runtimeConfig={{
@@ -139,11 +139,11 @@ const App = () => (
 );
 
 let key = 0;
-const render = () => ReactDOM.render(<App key={key++} />, document.getElementById('main'));
+const render = () => ReactDOM.createRoot(document.getElementById('main')!).render(<App key={key++} />);
 render();
 // for dispose test
 window.reset = (destroy = false) =>
-  destroy ? ReactDOM.render(<div>destroyed</div>, document.getElementById('main')) : render();
+  destroy ? ReactDOM.createRoot(document.getElementById('main')!).render(<div>destroyed</div>) : render();
 
 declare global {
   interface Window {
