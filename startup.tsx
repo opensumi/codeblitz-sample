@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 import { AppRenderer, BrowserFSFileType as FileType, IAppInstance } from '@codeblitzjs/ide-core'
 import { IEventBus, BrowserModule, Domain, ClientAppContribution, Disposable } from '@opensumi/ide-core-browser';
@@ -117,7 +117,10 @@ const App = () => {
         workspaceDir: 'codeblitz-startup',
         // modules:[unregisterKeybindingModule],
         extensionMetadata: [WorkerExample],
-        modules: [CustomModule]
+        modules: [CustomModule],
+        defaultPreferences:{
+          'general.theme': 'opensumi-design-dark-theme',
+        },
       }}
       runtimeConfig={{
         workspace: {
@@ -159,4 +162,4 @@ const App = () => {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('main'))
+ReactDOM.createRoot(document.getElementById('main')!).render(<App />);

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import Button from 'antd/lib/button';
 import 'antd/lib/button/style/index.css';
 
@@ -122,8 +122,8 @@ const App: React.FC = () => {
             layoutComponent: LayoutComponent,
             // 默认偏好设置
             defaultPreferences: {
-              // 主题色 opensumi-light | opensumi-dark
-              'general.theme': 'opensumi-light',
+              // 主题色 opensumi-design-light-theme | opensumi-design-dark-theme
+              'general.theme': 'opensumi-design-light-theme',
               'editor.previewMode': false,
               // 'editor.forceReadOnly': true,
 
@@ -176,4 +176,4 @@ const App: React.FC = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('main'));
+ReactDOM.createRoot(document.getElementById('main')!).render(<App />);

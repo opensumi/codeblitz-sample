@@ -10,7 +10,7 @@ export const initializePreferenceCommands = (context: ExtensionContext) => {
         } else if (type === 'tabSize') {
           workspace.getConfiguration().update('editor.tabSize', value, true);
         } else if (type === 'theme') {
-          const themeType = value === 'dark' ? 'opensumi-dark' : 'opensumi-light';
+          const themeType = value === 'dark' ? 'opensumi-design-dark-theme' : 'opensumi-design-light-theme';
           workspace.getConfiguration().update('general.theme', themeType, true);
         }
       });
