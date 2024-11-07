@@ -5,6 +5,7 @@
   "scripts": {
     "start": "npm run startup",
     "startup": "webpack serve --config webpack.config.js --env entry=startup",
+    "startup:bundle": "webpack serve --config webpack.config.js --env entry=startup-bundle",
     "code": "webpack serve --config webpack.config.js --env entry=code",
     "main": "webpack serve --config webpack.config.js --env entry=main",
     "fs": "webpack serve --config webpack.config.js --env entry=filesystem",
@@ -52,7 +53,13 @@
     "socket.io-client": "^4.7.2"
   },
   "resolutions": {
-    "@rjsf/core": "5.5.2"
+    "@rjsf/core": "5.5.2",
+    "node-gyp": "npm:@favware/skip-dependency@latest",
+    "nsfw": "npm:@favware/skip-dependency@latest",
+    "spdlog": "npm:@favware/skip-dependency@latest",
+    "node-pty": "npm:@favware/skip-dependency@latest",
+    "@parcel/watcher": "npm:@favware/skip-dependency@latest",
+    "keytar": "npm:@favware/skip-dependency@latest"
   },
   "repository": "git@github.com:opensumi/codeblitz-sample.git"
 }
